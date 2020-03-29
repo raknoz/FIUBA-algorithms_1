@@ -1,10 +1,12 @@
-
 '''
 Consigna:
-    Implementar algoritmos que resuelvan los siguientes problemas:
-        a) Dados dos números, imprimir la suma, resta, división y multiplicación de ambos.
-        b) Dado un número entero n, imprimir su tabla de multiplicar.
-
-Pre-requisitos:
-    Los numeros ingresados deben ser enteros positivos.
+    Escribir un programa que le pida una palabra al usuario, para luego imprimirla 1000 veces, en una única línea, con espacios intermedios.
 '''
+
+def printRushMode(word):
+    for x in range(1, 1000):
+        print(word, end=' ')
+    print('')
+
+word = input("Ingrese una palabra: ")
+printRushMode(word)
