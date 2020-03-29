@@ -1,3 +1,12 @@
+'''
+Consigna:
+    Escribir un programa que pregunte al usuario:
+        a) su nombre, y luego lo salude.
+        b) dos números, y luego muestre el producto.
+
+Pre-requisitos:
+    - Se deben ingresar solo números enteros postivos.
+'''
 def imprimir_datos():
 
     name = n1 = input("Ingrese su nombre: ")
