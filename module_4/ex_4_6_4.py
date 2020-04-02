@@ -50,9 +50,16 @@ def raices(a, b, c):
         x1, x2 = calcula_raiz(a, b, c)
         return print('La ecuación posee raíz doble y son: {} | {}'.format(x1, x2))
 
-def interseccion():
-    return 0
+def interseccion(x1, t1, x2, t2):
+    if( x1 == x2):
+        return print('Las pendientes no pueden ser iguales.')
+    
+    valor_x = (t2 - t1) / (x1 - x2)
+    valor_y = (x1 * valor_x) + t1
+
+    return print('El punto de intersercción es en las coordenadas ({} , {})'.format(valor_x, valor_y))
 
 
-#vertice(1, -6, 5)
+vertice(1, -6, 5)
 raices(2, 4, 3)
+interseccion(5, 8, 3, -4)
