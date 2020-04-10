@@ -14,4 +14,4 @@ def factorial(n):
         return n * factorial(n-1)
     
 value = int(input("Ingrese un número entero: "))
-print('El factorial de {} es {}'.format(value, factorial(value)))
+print(f'El factorial de {value} es {factorial(value)}')

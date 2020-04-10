@@ -8,17 +8,17 @@ Pre-requisitos:
     Los numeros ingresados deben ser enteros.
 '''
 
-def hacerCuentas(n1, n2):
-    print('Los numero seleccionados son {} y {} '.format(n1, n2))
+def hacer_cuentas(n1, n2):
+    print(f'Los numero seleccionados son {n1} y {n2} ')
     print(f'Los resultados son: Suma = {n1 + n2} | Resta= {n1 - n2} | Multipliacion= {n1 * n2} | Division= {n1 / n2}')
 
-def tablaMultiplicar(num):
+def tabla_multiplicar(num):
     for k in range(1, 11):
-        print('{} X {} = {}'.format(num, k, num * k))
+        print(f'{num} X {k} = {num * k }')
 
 
 n1 = int(input("Ingrese un número entero: "))
 n2 = int(input("Ingrese otro número entero: "))
-hacerCuentas(n1, n2)
+hacer_cuentas(n1, n2)
 num = int(input("Ingrese un número entero: "))
-tablaMultiplicar(num)
+tabla_multiplicar(num)

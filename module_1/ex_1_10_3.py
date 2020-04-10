@@ -7,13 +7,15 @@ Consigna:
 Pre-requisitos:
     - Se deben ingresar solo números enteros postivos.
 '''
-def imprimir_datos():
+def imprimir_saludo():
 
-    name = n1 = input("Ingrese su nombre: ")
+    name = input("Ingrese su nombre: ")
     print(f'Hola {name}')
 
+def imprimir_producto():
     n1 = int(input("Ingrese un número entero: "))
     n2 = int(input("Ingrese otro número entero: "))
-    print(f'el producto de {n1} y {n2} es  { n1 * n2}') 
+    print(f'el producto de {n1} y {n2} es { n1 * n2}') 
 
-imprimir_datos()
+imprimir_saludo()
+imprimir_producto()

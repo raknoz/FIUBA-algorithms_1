@@ -14,10 +14,10 @@ Pre-requisitos:
     - El radio de la circunferencia pueder ser un número racional positivo.
     - Los catetos del triangulo deben ser enteros positivos.
 '''
+PI = 3.14
 
 def imprimir_datos_geometricos():
-    pi = 3.14
-
+    
     print('Calculos para un rectangulo')
     br = int(input("Ingrese la base: "))
     hr = int(input("Ingrese la altura: "))
@@ -34,8 +34,8 @@ def imprimir_datos_geometricos():
     
     print('Calculos para un circulo')
     rc = float(input("Ingrese el radio del circulo: "))
-    print(f'El perimetro del circulo es {2 * pi * rc}')
-    print(f'El area del circulo es {pi * (rc**2)}')
+    print(f'El perimetro del circulo es {2 * PI * rc}')
+    print(f'El area del circulo es {PI * (rc**2)}')
 
     print('Calculos para un triangulo rectangulo')
     ca = float(input("Ingrese un cateto del triangulo: "))
