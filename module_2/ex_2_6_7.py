@@ -8,26 +8,34 @@ Pre-requisitos:
     - El valor de corte es ingresando -1
 '''
 
-def calcularFactorial(num):
+def calcular_factorial(num):
+    '''
+        Función que hace el cálculo del factorial recursivamente.
+    '''
     if(num == 1):
         return 1    
-    return num * calcularFactorial(num -1)
+    return num * calcular_factorial(num -1)
 
-def procesaLista(valores):
+def procesa_lista(valores):
+    '''
+        Procedimiento que procesa los datos ingresados por paŕametro.
+    '''
     if(len(valores) == 0):
         return print('Sin numeros para calcular!')
     
-    for pos in range(len(valores)):
-        print('Posicion {} => el factorial de {} es {} '.format(pos, valores[pos], calcularFactorial(valores[pos])))
+    for pos, val in enumerate(valores):
+        print(f'Posicion {pos} => el factorial de {val} es {calcular_factorial(val)} ')
             
-def cargaValores():
+def carga_valores():
+    '''
+        Procedimiento que pide los datos para procesar al usuario.
+    '''
     valores = []
     num = int(input('Ingrese un número para calcular factorial (-1 para salir): '))
     while(num > -1 and num > 0):
         valores.append(num)
         num = int(input('Ingrese otro número para calcular factorial (-1 para salir): '))
     
-    procesaLista(valores)
+    procesa_lista(valores)
         
-    
-cargaValores()
+carga_valores()

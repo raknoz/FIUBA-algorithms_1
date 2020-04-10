@@ -4,16 +4,18 @@ Consigna:
     mediante la suma de los números naturales desde 1 hasta n.
 '''
 
-def calcularSuma(num):
+def calcular_suma(num):
+    '''
+        Calcula la suma desde 1 hasta el valor pasado por parámetro.
+    '''
     value = 0
     for n in range(1, num + 1):
         value+=n
     return value
 
-def obtenerTriangulares(num):
+def obtener_triangulares(num):
     for n in range(1, num + 1):
-        print('{} -> {}'.format(n, calcularSuma(n)))
+        print(f'{n} -> {calcular_suma(n)}')
     
-
 num = int(input('Ingrese un número a calcular: '))
-obtenerTriangulares(num)
+obtener_triangulares(num)

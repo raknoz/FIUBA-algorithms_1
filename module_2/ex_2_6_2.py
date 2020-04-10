@@ -7,10 +7,10 @@ Pre-requesitos:
     - Los numeros ingresados deben ser positivos.
 '''
 
-def calculoInteres(capital, tasa, tiempo):
+def calculo_interes(capital, tasa, tiempo):
     print('El monto final a obtener es: {}'.format(capital * ((1 + (tasa/100)) ** tiempo)))
 
 capital = float(input('Ingrese el monto del capital: '))
 tasa = float(input('Ingrese el monto del tasa de interes: '))
 tiempo = float(input('Ingrese el tiempo a calcular: '))
-calculoInteres(capital, tasa, tiempo)
+calculo_interes(capital, tasa, tiempo)

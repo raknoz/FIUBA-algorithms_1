@@ -6,6 +6,6 @@ def main():
     pulgadas = int(input("Y cuántas pulgadas?: "))
 
     metros = 1609.344 * millas + 0.3048 * pies + 0.0254 * pulgadas
-    print("La longitud es de ", metros, " metros")
+    print(f"La longitud es de {metros} metros")
 
 main()

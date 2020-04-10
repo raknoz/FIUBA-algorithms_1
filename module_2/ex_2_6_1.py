@@ -8,17 +8,17 @@ Ciclos definidos
     e) Escribir un programa que use un ciclo definido con rango numérico, que averigue a cuántos amigos quieren saludar, les pregunte los nombres de esos amigos/as, y los salude.
 '''
 
-def cicloDefinido():
+def ciclo_definido():
     print('Numeros entre 10 y 20')
     for x in range(10, 21):
         print(x)
     
-def saludoAmigos():
+def saludo_amigos():
     print('Saludo a los 5 mejores amigos/as')
     for f in range(1,6):
         print('Hola mejor amigo/a {}'.format(f))
 
-def saludoAmigosLista(total):
+def saludo_amigos_lista(total):
     amigos = []
     for a in range(total):
         amigos.append(input('Ingrese el nombre de su mejor amigo/a:'))
@@ -26,10 +26,10 @@ def saludoAmigosLista(total):
     for amigo in amigos:
         print('Hola {} !'.format(amigo))
 
-cicloDefinido()
-saludoAmigos()
-saludoAmigosLista(5)
-saludoAmigosLista(6)
+ciclo_definido()
+saludo_amigos()
+saludo_amigos_lista(5)
+saludo_amigos_lista(6)
 
 total_amigos = int(input('A cuantos mejores amigos queres saludar?:'))
-saludoAmigosLista(total_amigos)
+saludo_amigos_lista(total_amigos)
