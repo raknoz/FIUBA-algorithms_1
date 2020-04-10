@@ -19,7 +19,7 @@ def a_hms(segundos):
 
     return h, m, s
 
-def procesoIntervalos(h1, m1, s1, h2, m2, s2):
+def proceso_intervalos(h1, m1, s1, h2, m2, s2):
     ht, mt, st =  a_hms(a_segundos(h1, m1, s1) + a_segundos(h2, m2, s2))
     print('Duracion:', ht, ' horas | ', mt, ' minutos | ', st, ' segundos')
 
@@ -31,4 +31,4 @@ h2 = int(input("¿Cuántas horas?: "))
 m2 = int(input("¿Cuántos minutos?: "))
 s2 = int(input("¿Cuántos segundos?: "))
 
-procesoIntervalos(h1, m1, s1, h2, m2, s2)
+proceso_intervalos(h1, m1, s1, h2, m2, s2)

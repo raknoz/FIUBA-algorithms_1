@@ -22,13 +22,21 @@ def norma(v1, v2, v3):
     return (sum([x**2 for x in vector])) ** 0.5
 
 def diferencia(x1, y1, z1, x2, y2, z2):
+    '''
+        Función que retorna la diferencia entre dos vectores de R3
+    '''
     return (x1-x2), (y1-y2), (z1-z2)
 
 def producto_vec(x1, y1, z1, x2, y2, z2):
+    '''
+        Función que calcula el producto vectoriano de 2 vectores en R3
+    '''
     return (y1 * z2)-(z1 * y2), (z1 * x2)-(x1 * z2), (x1 * y2)-(y1 * x2)
 
 def area_triangulo(x1, y1, z1, x2, y2, z2, x3, y3, z3):
-    'Calcula el producto vectorial de los 3 puntos'
+    '''
+        Calcula el producto vectorial de los 3 puntos
+    '''
     ab1, ab2, ab3 = diferencia(x1, y1, z1, x2, y2, z2)
     ac1, ac2, ac3 = diferencia(x1, y1, z1, x3, y3, z3)
     pv1, pv2, pv3 = producto_vec(ab1, ab2, ab3, ac1, ac2, ac3)
@@ -40,6 +48,9 @@ def area_triangulo(x1, y1, z1, x2, y2, z2, x3, y3, z3):
     return norma_abac / 2
 
 def area_cuadrilatero(x1, y1, x2, y2, x3, y3, x4, y4):
+    '''
+        Calcula el área de un cuadrilatero pasandole por parámetro sus puntos en el plano R2
+    '''
     ab1, ab2, ab3 = producto_vec(x1, y1, 0, x2, y2, 0)
     bc1, bc2, bc3 = producto_vec(x2, y2, 0, x3, y3, 0)
     cd1, cd2, cd3 = producto_vec(x3, y3, 0, x4, y4, 0)
@@ -48,12 +59,6 @@ def area_cuadrilatero(x1, y1, x2, y2, x3, y3, x4, y4):
     suma_norma = norma(ab1, ab2, ab3) + norma(bc1, bc2, bc3) + norma(cd1, cd2, cd3) + norma(da1, da2, da3)
 
     return suma_norma / 2
-
-
-
-
-
-
 
 print('La norma del vector {} es {}'.format([3, 2, -4], norma(3, 2, -4)))
 print('La diferencia vectorial es: {}'.format(diferencia(8, 7, -3, 5, 3, 2)))
