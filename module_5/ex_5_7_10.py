@@ -4,8 +4,11 @@ Consigna:
 '''
 
 def es_primo(n):
-    if(n == 1):
-        return True
+    '''
+        Valida si un número es primo.
+    '''
+    if n in (0, 1):
+        return False
     for x in range(n-1, 1, -1):
         if(n % x == 0):
             return False
@@ -18,7 +21,7 @@ def imprimir_numeros_primos(m):
         if(es_primo(x)):
             primos.append(x)
     
-    print('Los nmúeros primos que hay hasta el {}, son: {}'.format(m, primos))
+    print(f'Los nmúeros primos que hay hasta el {m}, son: {primos}')
 
 
 imprimir_numeros_primos(13)
