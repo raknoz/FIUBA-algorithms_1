@@ -6,6 +6,9 @@ Pre-requisito:
 '''
 
 def my_abs(num):
+    '''
+        Función que obtiene el módulo de un número.
+    '''
     if(num < 0):
         return (-1 * num)
 

@@ -3,7 +3,7 @@ Consigna:
     Escribir una función que reciba por parámetro una dimensión n, e imprima la matriz identidad correspondiente a esa dimensión.
 '''
 
-def dibujar_matriz(n):
+def dibujar_matriz_identidad(n):
     for f in range(1, n + 1):
         for c in range (1 , n + 1):
             valor = 0
@@ -14,5 +14,5 @@ def dibujar_matriz(n):
         print()
 
 
-dibujar_matriz(3)
-dibujar_matriz(4)
+dibujar_matriz_identidad(3)
+dibujar_matriz_identidad(4)

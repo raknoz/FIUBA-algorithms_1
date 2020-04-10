@@ -22,17 +22,21 @@ def es_primo(num):
     '''
         Retorna mensaje si es número es primo o no.
     '''
+    if num in (0, 1):
+        return print(f'{num} no es un número primo')
+
     for x in range(num-1 , 1, -1):
         if(num % x == 0):
-            print('{} no es un número primo'.format(num))
-            return
+            return print(f'{num} no es un número primo')
         
-    print('{} es un número primo'.format(num))
+    return print(f'{num} es un número primo')
 
 
 es_par(2)
 es_par(5)
 
+es_primo(0)
+es_primo(1)
 es_primo(3)
 es_primo(6)
 

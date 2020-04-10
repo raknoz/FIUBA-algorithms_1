@@ -25,6 +25,9 @@ def calcula_raiz(a, b, c):
     return x1, x2 
 
 def vertice(a, b, c):
+    '''
+        Calcula el máximo o mínimo de un polinomio de segundo grado.
+    '''
     if a == 0:
         return print('el valor a no puede ser 0')
     
@@ -37,6 +40,9 @@ def vertice(a, b, c):
     return print('Las coordenadas del vértice máximo de la función es X = {} | Y = {}'.format(xv, yv ))
 
 def raices(a, b, c):
+    '''
+        Calcula las raíces (reales o complejas) de un polinomio de segundo grado.
+    '''
     if a == 0:
         return 'el valor a no puede ser 0'
     
@@ -51,6 +57,9 @@ def raices(a, b, c):
         return print('La ecuación posee raíz doble y son: {} | {}'.format(x1, x2))
 
 def interseccion(x1, t1, x2, t2):
+    '''
+        La intersección de dos rectas (dadas las pendientes y ordenada al origen de cada recta).
+    '''
     if( x1 == x2):
         return print('Las pendientes no pueden ser iguales.')
     

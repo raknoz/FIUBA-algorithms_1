@@ -6,6 +6,9 @@ Consigna:
 DIAS_SEMANA = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado' ]
 
 def dia_de_la_semana(num):
+    '''
+        Retorna el día de la semana que cae el número pasado por parámetro.
+    '''
     if(num < 1 or num > 366):
         print('Error, no es un día válido del año!')
     print('El número {} cae el día: {}'.format(num, DIAS_SEMANA[num % 7]))
