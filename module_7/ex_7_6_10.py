@@ -81,7 +81,7 @@ def matriz_triangular_sup_3_x_3(m1):
     # Obtengo el renglón 3 
     r3 = m1[2]
 
-    # Inicio cálculo triangular inferior izquierda
+    # Inicio cálculo triangular inferior izquierdo
 
     #Multiplico el 3er renglón  con X1 del renglón 1 para obtener el primer 0 y el nuevo valor del r3
     r3 = resta_vectores(multiplica_vector(r3, r1[0]), multiplica_vector(r1, r3[0]))
@@ -92,7 +92,7 @@ def matriz_triangular_sup_3_x_3(m1):
     #Multiplico el 3er renglón con Y2 para obtner el tercer 0 y nuevo valor de r3
     r3 = resta_vectores(multiplica_vector(r3, r2[1]), multiplica_vector(r2, r3[1]))
 
-    # Inicio cálculo triangular superrior derecha
+    # Inicio cálculo triangular superior derecha
 
     #Multiplico el 1er renglón con Z3 para obtner el cuarto 0 y nuevo valor de r1
     r1 = resta_vectores(multiplica_vector(r1, r3[2]), multiplica_vector(r3, r1[2]))
