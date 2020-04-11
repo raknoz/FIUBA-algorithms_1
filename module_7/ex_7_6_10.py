@@ -72,6 +72,20 @@ def producto_matriz(m1, m2):
     print(f'El producto de las matrices es: {m_result}')
 
 def matriz_triangular_sup_3_x_3(m1):
+    '''
+        Dada la matriz:
+        r1 -> | X1 | Y1 | Z1 |
+        r2 -> | X2 | Y2 | Z2 |
+        r3 -> | X3 | Y3 | Z3 |
+
+        Se piensa cómo una lista con renglones (r1-r2-r3)
+        Se calcula la matriz triangular superior donde debe quedar cómo resultado:
+        | X1' |  0  | 0   |
+        | 0   | Y2' | 0   |
+        | 0   | 0   | Z3' |
+
+    '''
+
     #Matriz resultado
     m_result = []
     # Obetengo el renglón 1
@@ -83,24 +97,24 @@ def matriz_triangular_sup_3_x_3(m1):
 
     # Inicio cálculo triangular inferior izquierdo
 
-    #Multiplico el 3er renglón  con X1 del renglón 1 para obtener el primer 0 y el nuevo valor del r3
+    #Multiplico R3 * X1 y R1 * X3 => para obtener el 1er 0 y el nuevo valor del R3
     r3 = resta_vectores(multiplica_vector(r3, r1[0]), multiplica_vector(r1, r3[0]))
 
-    #Multiplico el 2do renglón con X1 para obtener el segundo 0 y el nuevo valor del r2
+    #Multiplico R2 * X1 y R1 * X2 => para obtener el 2do 0 y el nuevo valor del R2
     r2 = resta_vectores(multiplica_vector(r2, r1[0]), multiplica_vector(r1, r2[0]))
     
-    #Multiplico el 3er renglón con Y2 para obtner el tercer 0 y nuevo valor de r3
+    #Multiplico R3 * Y2 y R2 * Y3 => para obtener el 3er 0 de r3
     r3 = resta_vectores(multiplica_vector(r3, r2[1]), multiplica_vector(r2, r3[1]))
 
     # Inicio cálculo triangular superior derecha
 
-    #Multiplico el 1er renglón con Z3 para obtner el cuarto 0 y nuevo valor de r1
+    #Multiplico R1 * Z3 y R3 * Z1 => para obtner el 4to 0 y nuevo valor de R1
     r1 = resta_vectores(multiplica_vector(r1, r3[2]), multiplica_vector(r3, r1[2]))
     
-    #Multiplico el 2er renglón con Z3 para obtner el quinto 0 y nuevo valor de r2
+    #Multiplico R2 * Z3 y R1 * Z2 => para obtner el 5to 0 y nuevo valor de R2
     r2 = resta_vectores(multiplica_vector(r2, r3[2]), multiplica_vector(r3, r2[2]))
 
-    #Multiplico el 2er renglón con Y1 para obtner el quinto 0 y nuevo valor de r2
+    #Multiplico R1 * Y2 y R2 * Y1 => para obtner el 6to 0 y nuevo valor de R1
     r1 = resta_vectores(multiplica_vector(r1, r2[1]), multiplica_vector(r2, r1[1]))
 
     m_result.append(r1)
