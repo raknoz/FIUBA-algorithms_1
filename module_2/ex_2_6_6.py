@@ -14,8 +14,17 @@ def calcular_suma(num):
     return value
 
 def obtener_triangulares(num):
+    '''
+        Función que imprime los número triangulares desde 1 hasta num.
+    '''
     for n in range(1, num + 1):
         print(f'{n} -> {calcular_suma(n)}')
-    
-num = int(input('Ingrese un número a calcular: '))
-obtener_triangulares(num)
+
+def main():
+    '''
+        Función principal que se encarga de pedirle los datos al usuario.
+    '''
+    num = int(input('Ingrese un número a calcular: '))
+    obtener_triangulares(num)
+
+main()

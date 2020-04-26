@@ -9,16 +9,23 @@ Ciclos definidos
 '''
 
 def ciclo_definido():
-    print('Numeros entre 10 y 20')
+    '''
+        Función que imprime lo números entre 10 y 20
+    '''
     for x in range(10, 21):
         print(x)
     
 def saludo_amigos():
-    print('Saludo a los 5 mejores amigos/as')
+    '''
+        Función que imprime el saludo a los 5 mejores amigos/as
+    '''
     for f in range(1,6):
         print('Hola mejor amigo/a {}'.format(f))
 
 def saludo_amigos_lista(total):
+    '''
+        Función que le pide a usuario una lista de nombres 
+    '''
     amigos = []
     for a in range(total):
         amigos.append(input('Ingrese el nombre de su mejor amigo/a:'))
@@ -26,10 +33,16 @@ def saludo_amigos_lista(total):
     for amigo in amigos:
         print('Hola {} !'.format(amigo))
 
-ciclo_definido()
-saludo_amigos()
-saludo_amigos_lista(5)
-saludo_amigos_lista(6)
+def main():
+    '''
+        Función principal que invoca a las demás.
+    '''
+    ciclo_definido()
+    saludo_amigos()
+    saludo_amigos_lista(5)
+    saludo_amigos_lista(6)
 
-total_amigos = int(input('A cuantos mejores amigos queres saludar?:'))
-saludo_amigos_lista(total_amigos)
+    total_amigos = int(input('A cuantos mejores amigos queres saludar?:'))
+    saludo_amigos_lista(total_amigos)
+
+main()

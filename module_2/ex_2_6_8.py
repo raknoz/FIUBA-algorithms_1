@@ -4,6 +4,9 @@ Consigna:
 '''
 
 def dibujar_domino():
+    '''
+        Función que imprime el dominó.
+    '''
     for x in range (0,7):
         for h in range (x,7):
             print(f'|{x}|{h}|')

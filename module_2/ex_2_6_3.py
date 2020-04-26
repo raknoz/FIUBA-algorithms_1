@@ -16,5 +16,11 @@ def convertir_fahrenheit_celsius(grados):
     print(f'Los grados {grados} en Fahrenheit son {round(calcular_relacion(grados), 2)} en Celsius.')
 
 
-grados = float(input('Ingrese los grados Fahrenheit a calcular: '))
-convertir_fahrenheit_celsius(grados)
+def main():
+    '''
+        Función principal que pide los datos al usuario para procesarlos
+    '''
+    grados = float(input('Ingrese los grados Fahrenheit a calcular: '))
+    convertir_fahrenheit_celsius(grados)
+
+main()
