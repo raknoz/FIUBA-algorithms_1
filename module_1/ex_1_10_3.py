@@ -3,11 +3,12 @@ Consigna:
     Escribir un programa que pregunte al usuario:
         a) su nombre, y luego lo salude.
         b) dos números, y luego muestre el producto.
-
-Pre-requisitos:
-    - Se deben ingresar solo números enteros postivos.
 '''
 def imprimir_saludo():
+    '''
+        Función que pide por teclado el nombre de un usuario y lo saluda.
+        Luego calcula el producto de dos números pedidos por teclado.
+    '''
 
     name = input("Ingrese su nombre: ")
     print(f'Hola {name}')

@@ -8,15 +8,14 @@ Consigna:
         e) Calcular el área de un círculo dado su radio.
         f) Calcular el volumen de una esfera dado su radio.
         g) Dados los catetos de un triángulo rectángulo, calcular su hipotenusa.
-
-Pre-requisitos:
-    - La base, la altura y las coordenadas del rectángulo, deben ser enteros positivos.
-    - El radio de la circunferencia pueder ser un número racional positivo.
-    - Los catetos del triangulo deben ser enteros positivos.
 '''
 PI = 3.14
 
 def imprimir_datos_geometricos():
+    '''
+        Función que calcula áreas y perímetros de figuras geométricas en base a los datos pedidos al usuario.
+        Todos los valores pedidos, deben ser positivos y mayores a 0.
+    '''
     
     print('Calculos para un rectangulo')
     br = int(input("Ingrese la base: "))
