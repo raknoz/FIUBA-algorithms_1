@@ -18,11 +18,17 @@ def a_hms(segundos):
 
     return h, m, s
 
-h = int(input("¿Cuántas horas?: "))
-m = int(input("¿Cuántos minutos?: "))
-s = int(input("¿Cuántos segundos?: "))
-print('Duracion:', a_segundos(h, m, s), 'segundos')
+def main():
+    '''
+        Función principal que se encargar de pedirle los datos al usuario.
+    '''
+    h = int(input("¿Cuántas horas?: "))
+    m = int(input("¿Cuántos minutos?: "))
+    s = int(input("¿Cuántos segundos?: "))
+    print('Duracion:', a_segundos(h, m, s), 'segundos')
 
-s = int(input("¿Cuántos segundos?: "))
-h, m, s =  a_hms(s)
-print('Duracion:', h, ' horas | ', m, ' minutos | ', s, ' segundos')
+    s = int(input("¿Cuántos segundos?: "))
+    h, m, s =  a_hms(s)
+    print('Duracion:', h, ' horas | ', m, ' minutos | ', s, ' segundos')
+
+main()

@@ -60,9 +60,15 @@ def area_cuadrilatero(x1, y1, x2, y2, x3, y3, x4, y4):
 
     return suma_norma / 2
 
-print('La norma del vector {} es {}'.format([3, 2, -4], norma(3, 2, -4)))
-print('La diferencia vectorial es: {}'.format(diferencia(8, 7, -3, 5, 3, 2)))
-print('El producto vectorial es: {}'.format(producto_vec(1, 4, -2, 3, -1, 0)))
-print(area_triangulo(5, 8, -1, -2, 3, 4, -3, 3, 0))
-print('El área del cuadrilatero convexo es: {}'.format(area_cuadrilatero(4, 3, 5, 10, -2, 8, -3, -5)))
+def main():
+    '''
+        Función principal que se encargar de invocar a los métodos.
+    '''
+    print('La norma del vector {} es {}'.format([3, 2, -4], norma(3, 2, -4)))
+    print('La diferencia vectorial es: {}'.format(diferencia(8, 7, -3, 5, 3, 2)))
+    print('El producto vectorial es: {}'.format(producto_vec(1, 4, -2, 3, -1, 0)))
+    print(area_triangulo(5, 8, -1, -2, 3, 4, -3, 3, 0))
+    print('El área del cuadrilatero convexo es: {}'.format(area_cuadrilatero(4, 3, 5, 10, -2, 8, -3, -5)))
 
+
+main()
