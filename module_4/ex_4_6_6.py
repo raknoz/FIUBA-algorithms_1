@@ -12,6 +12,3 @@ def dia_de_la_semana(num):
     if(num < 1 or num > 366):
         print('Error, no es un día válido del año!')
     print('El número {} cae el día: {}'.format(num, DIAS_SEMANA[num % 7]))
-
-
-dia_de_la_semana(1)

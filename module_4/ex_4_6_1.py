@@ -3,9 +3,6 @@ Consigna:
     Escribir dos funciones que resuelvan los siguientes problemas:
         a) Dado un número entero n, indicar si es par o no.
         b) Dado un número entero n, indicar si es primo o no.
-
-Pre-requisitos:
-    - Los números ingresados deben ser enteros no negativos.
 '''
 
 def es_par(num):
@@ -23,21 +20,12 @@ def es_primo(num):
         Retorna mensaje si es número es primo o no.
     '''
     if num in (0, 1):
-        return print(f'{num} no es un número primo')
-
-    for x in range(num-1 , 1, -1):
-        if(num % x == 0):
-            return print(f'{num} no es un número primo')
+        return f'{num} no es un número primo'
         
-    return print(f'{num} es un número primo')
-
-
-es_par(2)
-es_par(5)
-
-es_primo(0)
-es_primo(1)
-es_primo(3)
-es_primo(6)
-
-
+    #Hay una teoría que indica que se puede saber solo con recorrer hasta 1 + la raíz cuadrada de num
+    limite =  int(num**0.5) + 1
+    for x in range(2, limite):
+        if(num % x == 0):
+            return f'{num} no es un número primo'
+        
+    return f'{num} es un número primo'

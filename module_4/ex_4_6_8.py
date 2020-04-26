@@ -1,13 +1,12 @@
 '''
 Consigna:
     Programa de astrología: el usuario debe ingresar el día y mes de su cumpleaños y el programa le debe decir a qué signo corresponde.
-
-Pre-requisitos:
-    - Los días deben estar en 1 y 31
-    - Los meses deben estar en 1 y 12
 '''
 
 def signo_horoscopo(d,m):
+    '''
+        Función que devuelve el signo del zodíaco de acuerdo al día y mes pasado cómo parametro.
+    '''
     clave = int(str(m) + '{:02d}'.format(d))
     if(clave > 320 and clave < 421):
         return 'Aries'
@@ -33,7 +32,9 @@ def signo_horoscopo(d,m):
         return 'Acuario'
     return 'Piscis'
 
+def main():
+    d = int(input("Ingrese el día de su cumpleaños: "))
+    m = int(input("Ingrese el mes de su cumpleaños: "))
+    print(f'Para el día {d} del mes {m} el signo es: {signo_horoscopo(d, m)}')
 
-d = int(input("Ingrese el día de su cumpleaños: "))
-m = int(input("Ingrese el mes de su cumpleaños: "))
-print('Para el día {} del mes {} el signo es: {}'.format(d, m ,signo_horoscopo(d, m)))
+main()

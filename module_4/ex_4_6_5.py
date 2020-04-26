@@ -17,11 +17,8 @@ def es_bisiesto(y):
     '''
         Función que retorna True o False si un año es o no bisiesto.
     '''
-    if(y % 400 == 0) or (y % 4 == 0 and y % 100 != 0):
-        return True
-    else:
-        return False
-
+    return (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0)
+        
 def contador_dias(m, y):
     '''
         Función que devuelve el total de días transcurridos hasta un mes determinado.
@@ -68,7 +65,7 @@ def dias_transcurridos(d, m, y):
     ''''
         Retorna la cantidad de días transcurridos hasta la fecha pasada por parámetros.
     '''
-    return (contador_dias(m, y) + d)
+    return contador_dias(m, y) + d
 
 def dias_entre_fechas(d1, m1, y1, d2, m2, y2):
     '''
@@ -134,19 +131,3 @@ def días_entre_fechas(d1, m1, y1, d2, m2, y2):
 
     result  = dias_hasta_fin_de_anio(d1, m1, y1) + contador_dias(m2 - 1, y2) + d2 
     print('Entre las fechas transcurrieron: {} días'.format(result))
-
-
-# valida_bisiesto(1997)
-# valida_bisiesto(2012)
-#print(contador_dias(12, 2011))
-#valida_fecha(29,2,2012)
-#valida_fecha(29,2,2011)
-#valida_fecha(31,3,2011)
-#falta_fin_de_mes(1, 2, 2013)
-#falta_fin_de_anio(1, 1, 2011)
-#falta_fin_de_anio(1, 2, 2011)
-#falta_fin_de_anio(6, 3, 2011)
-#falta_fin_de_anio(6, 3, 2012)
-#dias_transcurridos_hasta_fecha(28, 2, 2011)
-#dias_transcurridos_hasta_fecha(1, 3, 2012)
-días_entre_fechas(28, 1, 2011, 29, 1, 2012)
