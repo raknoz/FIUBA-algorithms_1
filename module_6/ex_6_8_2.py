@@ -23,11 +23,3 @@ def insertar_separador_custom(s, r):
 
     #Quito el último punto que se agrega
     print(result[:-1])
-
-
-
-#print(insertar_separador('separador', ','))
-#print(reemplazar_caracteres('mi archivo de texto.txt', '_'))
-#print(reemplazar_digitos('su clave es: 1540', 'X'))
-
-insertar_separador_custom('255255255012', '.')

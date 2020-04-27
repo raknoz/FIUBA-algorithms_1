@@ -32,8 +32,3 @@ def letra_capital_a(s):
         result.append(e.capitalize() if e[0] == 'a' else e)
     
     return ' '.join(result)
-    
-
-#print(primera_letra('Universal Serial Bus'))
-#print(letra_capital('república argentina'))
-print(letra_capital_a('república argentina'))

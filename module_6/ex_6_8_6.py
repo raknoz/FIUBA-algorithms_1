@@ -10,34 +10,44 @@ Consigna:
 LETRAS_VOCALES = ['a', 'e', 'i', 'o', 'u']
 
 def siguiente_vocal(v):
+    '''
+        Función que devuelve la siguiente vocal.
+    '''
     if v.lower() == 'u':
         return 'a'
     #Obtengo la posición en la lista y retorno la sigueente
-    return LETRAS_VOCALES.__getitem__(LETRAS_VOCALES.index(v) + 1)
+    return LETRAS_VOCALES[LETRAS_VOCALES.index(v) + 1]
     
 def devolver_consonantes(s):
+    '''
+        Función que se encarga de retornar solo las constantes de la cadena s.
+    '''
     result = ''
     for c in s.lower():
-        #Valido que esté contenido en la lista
-        if not LETRAS_VOCALES.__contains__(c):
+        if not c in LETRAS_VOCALES:
             result += c
-
     return result
 
 def devolver_vocales(s):
+    '''
+        Función que devuelve solo las vocales de la cadena s.
+    '''
     result = ''
     for c in s.lower():
         #Valido que sea vocal u otro caracter especial o espacio
-        if LETRAS_VOCALES.__contains__(c) or not c.isalpha():
+        if c in LETRAS_VOCALES or not c.isalpha():
             result += c
 
     return result
 
 def cambiar_vocales(s):
+    '''
+        Función que recorre una lista y cuando encuentra una vocal la cambia por la siguiente.
+    '''
     result = ''
 
     for c in s.lower():
-        if LETRAS_VOCALES.__contains__(c):
+        if c in LETRAS_VOCALES:
             result += siguiente_vocal(c)
         else:
             result += c
@@ -45,6 +55,9 @@ def cambiar_vocales(s):
     return result
 
 def es_palindromo(s):
+    '''
+        Función que valida si una cadena es palindromo o no.
+    '''
     #Le quito los espacios y pongo todo en minúscula
     s = s.replace(' ', '').lower()
     #Comparo la cadena original con el reverso
@@ -52,9 +65,3 @@ def es_palindromo(s):
         return 'Es palindromo'
     
     return 'No es palindromo'
-
-
-#print(devolver_consonantes('algoritmos p'))
-#print(devolver_vocales('sin consonAntes'))
-#print(cambiar_vocales('vestuario'))
-print(es_palindromo('anita lava la tina'))

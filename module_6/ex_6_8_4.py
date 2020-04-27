@@ -9,9 +9,6 @@ def insertar_separador_custom(s, r):
     for x in range(0, len(s), 3):
         result += s[x:x + 3] + r
 
-    #Quito el último punto que se agrega
-    print()
-
 def separador_miles(s):
     s = s[::-1]
     result = ''
@@ -20,5 +17,3 @@ def separador_miles(s):
         result += s[x:x + 3] + '.'
 
     return result[:-1][::-1]
-
-separador_miles('1234567890')

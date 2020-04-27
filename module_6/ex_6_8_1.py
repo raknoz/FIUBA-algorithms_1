@@ -25,9 +25,3 @@ def invertir_texto(s):
 
 def adicionar_texto(s):
     print(s + s[::-1])
-
-#imprimir_caracteres_inicio('hola')
-#imprimir_caracteres_fin('chau')
-#caracteres_salteados('recta')
-#invertir_texto('hola mundo!')
-#adicionar_texto('reflejo')

@@ -15,5 +15,3 @@ def convertir_a_decimal(b):
         result += int(b[x]) * (2 ** x)
     
     return result
-
-print('El valor {} en base 2 es igual a {} en decimal'.format('10011', convertir_a_decimal('10011')))

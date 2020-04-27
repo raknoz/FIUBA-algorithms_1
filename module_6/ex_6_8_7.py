@@ -16,8 +16,3 @@ def devolver_por_orden(s, t):
         Devuelve la cadena más chica por orden alfabético.
     '''
     return s if s < t else t
-
-#print(es_subcadena('subcadena', 'cadena'))
-print(devolver_por_orden('kde', 'Gnome' ))
-
-

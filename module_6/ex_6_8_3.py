@@ -49,9 +49,3 @@ def insertar_separador_custom(s, r, l):
     
     result += s[(indice-1):]
     print(result)
-        
-
-#print(insertar_separador('separador', ',', 3))
-#print(reemplazar_caracteres('mi archivo de texto.txt', '_'))
-#print(reemplazar_digitos('su clave es: 1540', 'X', 5))
-#insertar_separador_custom('25525525502', '.', 4)
