@@ -14,5 +14,3 @@ def procesa_datos(lista):
     
     print(max(valores))
 
-procesa_datos([1, 5, -2, -4])
-

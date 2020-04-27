@@ -1,39 +1,25 @@
+from ex_3_9_1 import a_segundos, a_hms
 '''
 Consigna:
     Usando las funciones del ejercicio anterior, escribir un programa que pida al usuario dos intervalos expresados en horas, minutos y segundos, sume sus duraciones, y mues-
     tre por pantalla la duración total en horas, minutos y segundos.
-'''
+'''   
 
-def a_segundos(horas, minutos, segundos):
-    '''
-        Transforma en segundos una medida de tiempo expresada en horas, minutos y segundos
-    '''
-    return 3600 * horas + 60 * minutos + segundos
-
-def a_hms(segundos):
-    '''Dada una duración entera en segundos se la convierte a horas, minutos y segundos'''
-    h = segundos // 3600
-    m = (segundos % 3600) // 60
-    s = (segundos % 3600) % 60
+def pedir_horario():
+    h = int(input("¿Cuántas horas?: "))
+    m = int(input("¿Cuántos minutos?: "))
+    s = int(input("¿Cuántos segundos?: "))
 
     return h, m, s
-
-def proceso_intervalos(h1, m1, s1, h2, m2, s2):
-    ht, mt, st =  a_hms(a_segundos(h1, m1, s1) + a_segundos(h2, m2, s2))
-    print('Duracion:', ht, ' horas | ', mt, ' minutos | ', st, ' segundos')
 
 def main():
     '''
         Función principal que se encargar de pedirle los datos al usuario.
     '''
-    h1 = int(input("¿Cuántas horas?: "))
-    m1 = int(input("¿Cuántos minutos?: "))
-    s1 = int(input("¿Cuántos segundos?: "))
-
-    h2 = int(input("¿Cuántas horas?: "))
-    m2 = int(input("¿Cuántos minutos?: "))
-    s2 = int(input("¿Cuántos segundos?: "))
-
-    proceso_intervalos(h1, m1, s1, h2, m2, s2)
+    h1, m1, s1 = pedir_horario()
+    h2, m2, s2 = pedir_horario()
+    
+    ht, mt, st =  a_hms(a_segundos(h1, m1, s1) + a_segundos(h2, m2, s2))
+    print('Duracion:', ht, ' horas | ', mt, ' minutos | ', st, ' segundos')
 
 main()

@@ -31,7 +31,8 @@ def producto_vec(x1, y1, z1, x2, y2, z2):
     '''
         Función que calcula el producto vectoriano de 2 vectores en R3
     '''
-    return (y1 * z2)-(z1 * y2), (z1 * x2)-(x1 * z2), (x1 * y2)-(y1 * x2)
+    #return (y1 * z2)-(z1 * y2), (z1 * x2)-(x1 * z2), (x1 * y2)-(y1 * x2)
+    return diferencia((y1 * z2), (z1 * x2), (x1 * y2), (z1 * y2), (x1 * z2), (y1 * x2))
 
 def area_triangulo(x1, y1, z1, x2, y2, z2, x3, y3, z3):
     '''
@@ -59,16 +60,3 @@ def area_cuadrilatero(x1, y1, x2, y2, x3, y3, x4, y4):
     suma_norma = norma(ab1, ab2, ab3) + norma(bc1, bc2, bc3) + norma(cd1, cd2, cd3) + norma(da1, da2, da3)
 
     return suma_norma / 2
-
-def main():
-    '''
-        Función principal que se encargar de invocar a los métodos.
-    '''
-    print('La norma del vector {} es {}'.format([3, 2, -4], norma(3, 2, -4)))
-    print('La diferencia vectorial es: {}'.format(diferencia(8, 7, -3, 5, 3, 2)))
-    print('El producto vectorial es: {}'.format(producto_vec(1, 4, -2, 3, -1, 0)))
-    print(area_triangulo(5, 8, -1, -2, 3, 4, -3, 3, 0))
-    print('El área del cuadrilatero convexo es: {}'.format(area_cuadrilatero(4, 3, 5, 10, -2, 8, -3, -5)))
-
-
-main()
