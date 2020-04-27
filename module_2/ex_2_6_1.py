@@ -37,11 +37,6 @@ def main():
     '''
         Función principal que invoca a las demás.
     '''
-    ciclo_definido()
-    saludo_amigos()
-    saludo_amigos_lista(5)
-    saludo_amigos_lista(6)
-
     total_amigos = int(input('A cuantos mejores amigos queres saludar?:'))
     saludo_amigos_lista(total_amigos)
 
