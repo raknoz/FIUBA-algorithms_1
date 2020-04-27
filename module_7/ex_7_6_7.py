@@ -5,11 +5,12 @@ Consigna:
 '''
 
 def procesa_lista_nombres(l):
+    '''
+        Función que recorre l y arma el string para imprimir.
+    '''
     result = []
-
     for n, a, i in l:
         result.append(f'{n} {i}. {a}')
-
     return result
 
 def imprime_nombres_formato(l):
@@ -18,6 +19,3 @@ def imprime_nombres_formato(l):
     '''
     for e in procesa_lista_nombres(l):
         print(e)
-    
-
-imprime_nombres_formato([('David', 'Gomez', 'H')])

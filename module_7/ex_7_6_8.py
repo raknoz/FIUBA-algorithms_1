@@ -7,7 +7,7 @@ Consigna:
 '''
 
 def invertir_lista(l):
+    '''
+        Función que invierte una lista.
+    '''
     return print(l[::-1])
-
-invertir_lista(['Di', 'buen', 'día', 'a', 'papa'])
-

@@ -56,8 +56,3 @@ def vectores_paralelos(v1, v2):
     cos =  'son' if (pd / mag) in (-1, 1) else 'no son'
     
     print(f'Los dos vectores {v1} y {v2} {cos} paralelos')
-
-
-#calculo_producto_escalar((1, 2), (3, 4))
-#calculo_ortogonal((1, -3), (-2, 4))
-#vectores_paralelos((4, 2), (-4, -2))

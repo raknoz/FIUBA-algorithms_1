@@ -23,17 +23,17 @@ def imprimir_tupla(votantes):
         print(f'{saludo} {n}, vote por mí.')
 
 def imprimir_tupla_posiscion(votantes, ini, total):
+    '''
+        Imprimer el mensaje para una cantidad total a partir de ini.
+    '''
     fin = ini + total
     lista = votantes[ini:fin]
     imprimir_tupla_generica(lista)
 
 def imprimir_tupla_genero(votantes, ini, total):
+    '''
+       Imprimer el mensaje para una cantidad total a partir de ini, distinguido por género.
+    '''
     fin = ini + total
     lista = votantes[ini:fin]
     imprimir_tupla(lista)
-
-
-#imprimir_tupla_generica(('Pepe', 'Jose', 'Mateo'))
-#imprimir_tupla_posiscion(('Pepe', 'Jose', 'Mateo'), 1, 3)
-imprimir_tupla_genero((('Pepe', 'M'), ('Josefa', 'F'), ('Mateo', 'M')), 1, 3)
-

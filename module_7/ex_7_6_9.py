@@ -5,6 +5,9 @@ Consigna:
 '''
 
 def empaquetar(l):
+    '''
+        Función que recorre una lista e indica la repetición de valores consecutivos.
+    '''
     index = 0
     result = []
     
@@ -21,9 +24,3 @@ def empaquetar(l):
         result.append((valor, contador))
 
     return result
-
-
-print(empaquetar([1, 1, 1, 3, 5, 1, 1, 3, 3]))
-
-
-

@@ -29,6 +29,3 @@ def devuelve_multiplos(l,k):
         Función que devuelve una lista con aquellos que son múltiplos de k.
     '''
     return [x for x in l if x % k  == 0]
-
-#print(separa_elementos([1, 3, 2, 5, 9, 0], 2))
-print(devuelve_multiplos([1, 3, 2, 5, 9, 0], 2))

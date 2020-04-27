@@ -7,6 +7,9 @@ Consigna:
 # Está incompleto
 
 def texto_plegado(texto, limite):
+    '''
+        Función que procesa y pliega un texto de acuerdo al límite que recibe.
+    '''
     result = []
     palabras = texto.split()
     frase = ''
@@ -26,5 +29,3 @@ def texto_plegado(texto, limite):
             result.append(frase)
 
     print(result)
-
-texto_plegado('welc come to the jungle my loves yeah a', 6)

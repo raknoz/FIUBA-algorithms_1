@@ -4,10 +4,11 @@ Consigna:
 '''
 
 def estan_ordenados(l):
+    '''
+        Función que valida si una lista está ordenada.
+    '''
     ls = sorted(l)
     if (ls == l):
         return print('Están ordenados')
     
     return print('No están ordenados')
-
-estan_ordenados([1, 2, 4, 6])

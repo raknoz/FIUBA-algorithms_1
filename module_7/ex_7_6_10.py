@@ -9,7 +9,7 @@ Consigna:
 
 def dibujar_matriz(m):
     '''
-        Función que se encarga de dibuhar una matriz
+        Función que se encarga de dibuhar una matriz.
     '''
     rows = len(m)
     columns = len(m[0])
@@ -18,8 +18,6 @@ def dibujar_matriz(m):
             print(f' {m[r][c]:6}', end= '|')
         print()
     return
-
-
 
 def multiplica_vector(vec, p):
     '''
@@ -122,9 +120,3 @@ def matriz_triangular_sup_3_x_3(m1):
     m_result.append(r3)
 
     dibujar_matriz(m_result)
-    
-
-#suma_matriz([[1, 2, 3], [4, 5, 6]], [[4, 5, 6], [7, 8, 9]])
-#producto_matriz([[1, 2, 3], [4, 5, 6]], [[4, 5, 6], [7, 8, 9]])
-#matriz_triangular_sup_3_x_3([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-matriz_triangular_sup_3_x_3([[2, -1, 1], [3, 1, -2], [-1, 2, 5]])

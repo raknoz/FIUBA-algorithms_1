@@ -54,12 +54,4 @@ def calcula_factorial_lista(l):
     for n in l:
         lista_factorial.append(calcula_factorial(n))
     
-    return lista_factorial
-
-
-#filtrar_primos([1,3,6,8,90,13,27,11, 7])
-#s, p = retorna_calculos([1,3,6,8,90,13,27,11, 7])
-#print(f'La sumatoria de la lista es: {s} y el promedio: {p}')
-
-print(f'El factorial de cada uno de los elementos de la lista es: {calcula_factorial_lista([5, 2])}')
-    
+    return lista_factorial    

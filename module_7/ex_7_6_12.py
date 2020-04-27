@@ -12,6 +12,9 @@
 cuadrado = lambda x : x * x
 
 def solo_pares(l):
+    '''
+        Función que devuelve sólo los números pares.
+    '''
     return [x for x in l if x % 2 == 0]
 
 def map(l, m):
@@ -24,7 +27,7 @@ def map(l, m):
     return result
 
 def filter(l, f):
+    '''
+        Función que recibe un filtro y una lista y devuelve la lista filtrada.
+    '''
     return f(l)
-
-#print(map([1, 2, 4], cuadrado))
-#print(filter([1, 2, 4], solo_pares))
