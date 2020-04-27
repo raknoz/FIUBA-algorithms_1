@@ -29,6 +29,3 @@ def procesa_texto(t):
     
     #Imprimo el diccionario
     print(_dict)
-
-procesa_texto('hola mundo')
-

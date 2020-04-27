@@ -46,11 +46,3 @@ def procesa_tirada_dados(l):
 
     print(f'Lista con las sumas: {l_suma}')
     return contador_apariciones(l_suma)
-
-
-
-#cadena = 'Qué lindo día que hace hoy'
-#print(contador_apariciones(cadena.lower().slipt()))
-#cadena = 'Qué lindo día que hace hoy'
-#print(contador_apariciones(cadena.replace(' ', '').lower()))
-print(procesa_tirada_dados(genera_tirada_dados()))

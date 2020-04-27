@@ -9,15 +9,27 @@ Consigna:
 '''
 
 def pide_nombre():
+    '''
+        Función que pide el nombre de la persona a agregar.
+    '''
     return input('Ingrese un nombre (* para salir): ')
 
 def pide_numero_tel(n):
+    '''
+        Función que pide el número de teléfono de la persona a agregar.
+    '''
     return input(f'Ingrese el número de teléfono para {n}: ')
 
 def cambia_numero_tel(n, t_old):
+    '''
+        Función que pide el número de teléfono a actualizar.
+    '''
     return input(f'Ingrese el número de teléfono para {n} (actual {t_old}): ')
 
 def valida_cambio_tel(n, t_old):
+    '''
+        Función que le pide al usuario que valide si quiere actualizar el teléfono del contacto.
+    '''
     opc = input(f'Desea actualizar el número de teléfono {t_old} de {n} (S/N): ')
     while opc.upper() not in ('S', 'N'):
         opc = input(f'Desea actualizar el número de teléfono {t_old} de {n} (S/N): ')
@@ -45,7 +57,3 @@ def completa_agenda():
         flag = False
         n = pide_nombre()
     return agenda
-
-print(completa_agenda())
-
-

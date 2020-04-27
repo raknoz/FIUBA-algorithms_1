@@ -19,5 +19,3 @@ def tuplas_a_diccionario(l):
             _dict[e[0]] = [e[1]]
 
     return _dict
-
-print(tuplas_a_diccionario([('Hola', 'don Pepito'), ('Hola', 'don Jose'), ('Buenos', 'días')]))
