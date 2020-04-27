@@ -1,9 +1,11 @@
 '''
 Consigna:
-    Escribir una función que dada la cantidad de ejercicios de un examen, y el porcentaje necesario de ejercicios bien resueltos necesario para aprobar dicho examen, revise un
-    grupo de examenes. 
-    Para ello, en cada paso debe preguntar la cantidad de ejercicios resueltos por el alumno, indicando con un valor centinela que no hay más examenes a revisar. 
-    Debe mostrar por pantalla el porcentaje correspondiente a la cantidad de ejercicios resueltos respecto a la cantidad de ejercicios del examen y una leyenda que indique si aprobó o no.
+    Escribir una función que dada la cantidad de ejercicios de un examen, y el porcentaje necesario de ejercicios bien resueltos necesario 
+    para aprobar dicho examen, revise un grupo de examenes. 
+    Para ello, en cada paso debe preguntar la cantidad de ejercicios resueltos por el alumno, indicando con un valor centinela que no hay más 
+    examenes a revisar. 
+    Debe mostrar por pantalla el porcentaje correspondiente a la cantidad de ejercicios resueltos respecto a la cantidad de ejercicios del 
+    examen y una leyenda que indique si aprobó o no.
 '''
  
 def minimo_aprobado(t, p):
@@ -40,17 +42,5 @@ def evalua_examenes(t, p):
         indice += 1
         ejercicios_ok = cargar_ejercicio()
 
-    
-
     for v in alumnos_examenes.values():
-        print(f'El alumno realizó el {v[1]}% de {v[0]} ejercios y el estado es {v[2]}')
-
-
-evalua_examenes(10, 70)
-
-
-
-
-
-
-    
+        print(f'El alumno realizó el {v[1]}% de {v[0]} ejercios y el estado es {v[2]}')   

@@ -20,7 +20,7 @@ def calcular_mcd(m, n):
 
     print('Resultado: ', n)
 
-
+#Parte B
 calcular_mcd(15, 9)
 calcular_mcd(9, 15)
 calcular_mcd(10, 8)

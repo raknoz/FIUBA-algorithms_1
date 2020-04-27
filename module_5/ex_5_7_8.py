@@ -10,12 +10,11 @@ def corte_centinela():
     num = pedir_numero()
     numeros = []
 
-    while(num != -1):
+    while num != -1:
         numeros.append(num)
         num = pedir_numero()
 
-    print('Se ingrsaron: {} números. La suma es: {} y el promedio es igual a: {}'.format(len(numeros), sum(numeros), sum(numeros) / len(numeros)))
-
+    promedio = sum(numeros) / len(numeros) if len(numeros) else 0
+    print(f'Se ingrsaron: {len(numeros)} números. La suma es: {sum(numeros)} y el promedio es igual a: {promedio}')
 
 corte_centinela()
-

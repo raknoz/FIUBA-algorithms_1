@@ -24,6 +24,3 @@ def pide_notas():
         rta = input('Desea ingresar una nota S / N: ')
     
     print('El promedio es: {}'.format(calcula_promedio(notas)))
-
-
-pide_notas()

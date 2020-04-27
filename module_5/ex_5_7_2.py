@@ -7,10 +7,13 @@ def es_primo(n):
     '''
         Retorna true or false si un número es primo o no
     '''
-    for d in range(n - 1, 1, -1):
+    if n in (0, 1):
+        return False
+    
+    limite = 1 + n ** 0.5
+    for d in range(2, limite):
         if n % d == 0:
             return False
-
     return True
 
 def obtener_primos(k):
@@ -41,7 +44,4 @@ def descomponer_en_primos(k):
         if primo > num:
             indice += 1
     
-    print('El número {} se descompone en los primos: {}'.format(k, result))
-        
-
-descomponer_en_primos(22)
+    print(f'El número {k} se descompone en los primos: {result}')

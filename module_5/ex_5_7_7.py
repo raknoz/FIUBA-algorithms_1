@@ -11,9 +11,8 @@ Consigna:
 def obtener_divisores(n):
     result = []
     for x in range(1, n):
-        if(n % x == 0):
+        if n % x == 0:
             result.append(x)
-
     return result
 
 def suma_divisores(n):
@@ -30,12 +29,9 @@ def obtener_numeros_perfectos(m):
     valor = 1
     while len(calculado) < m:
         suma_div = suma_divisores(valor)
-        
         if suma_div == valor:
             calculado.append(valor)
-        
         valor +=1
-    
     return calculado
 
 def obtener_numeros_amigos(m):
@@ -49,20 +45,10 @@ def obtener_numeros_amigos(m):
     while len(result) < m:
         a = suma_divisores(valor)
         b = suma_divisores(a)
-
-        print('n: {} | a: {} | b: {}'.format(valor, a, b))
-
-        if (b == valor and a != b):
+        #print(f'n: {valor} | a: {a} | b: {b}')
+        if b == valor and a != b:
             if not result.__contains__([b, a]) and not result.__contains__([a, b]):
                 result.append([b, a])
-        
         valor += 1
 
     return result
-
-
-print('La suma de los divisores da: {}'.format(suma_divisores(2924)))
-limite = int(input('Ingrese cuántos números perfectos quiere calcular: '))
-print(obtener_numeros_perfectos(limite))
-limite = int(input('Ingrese cuántos números amigos quiere calcular: '))
-print('Los {} primeros pares de números amigos son: {}'.format(limite, obtener_numeros_amigos(limite)))

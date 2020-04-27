@@ -15,7 +15,8 @@ def es_potencia_de_dos(n):
     if n == 1:
         return True
 
-    if n % 2 != 0:
+    # n % 2 != 0
+    if n % 2:
         return False
 
     while(result < n):
@@ -38,8 +39,3 @@ def es_potencia_de_dos_rangos(n1, n2):
             result.append(n)
 
     return sum(result)
-
-
-print(es_potencia_de_dos(7))
-print('La suma de las potencias de 2 entre esos valores da: {}'.format(es_potencia_de_dos_rangos(0,1)))
-

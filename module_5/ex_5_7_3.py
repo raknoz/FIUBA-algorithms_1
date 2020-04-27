@@ -68,8 +68,3 @@ def pedir_pass_limitado_sleep():
         print('Binvenido usuario!')
     else:
         print('Cantidad de intentos agotados!')
-
-
-#pedir_pass_iterativo()
-#pedir_pass_limitado()
-pedir_pass_limitado_sleep()
