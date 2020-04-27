@@ -36,6 +36,10 @@ def valida_cambio_tel(n, t_old):
     return True if opc.upper() == 'S' else False 
 
 def completa_agenda():
+    '''
+        Función principal que le pide al usuario nombre y verifica si existen en la agenda. Y en ese caso pregunta
+        si desea actualizar el número de teléfono.
+    '''
     agenda = {}
     n = pide_nombre()
     #Flag que avisa si hay para agregar un teléfino.
