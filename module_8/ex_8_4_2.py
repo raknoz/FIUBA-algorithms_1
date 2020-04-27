@@ -38,8 +38,3 @@ def retorna_maximo_tupla(l):
             l_max = (i, n)
     
     return l_max
-
-
-#print(retorna_maximo([1, 4, 56, 98, 23, 6]))
-#tupla = retorna_maximo_tupla([1, 4, 56, 98, 23, 6])
-#print(f'El máximo elemento de la lista es {tupla[1]} y está en la posición {tupla[0] + 1 }')

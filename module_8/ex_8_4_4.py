@@ -7,26 +7,19 @@ Consigna:
         Escribir una función que reciba ambas listas e imprima por pantalla la factura solicitada.
 '''
 
-def generar_lista_productos():
-    result = []
-    result.append((1, 'prod 1', 1))
-    result.append((2, 'prod 2', 3))
-    result.append((3, 'prod 3', 4))
-    return result
-
-def generar_lista_pedido():
-    result = []
-    result.append((1, 1))
-    result.append((2, 5))
-    return result
-
 def buscar_producto(id, l):
+    '''
+        Función que busca en la lista el ID pasado por parámetro, sino devuelve -1-
+    '''
     for p in l:
         if p[0] == id:
             return p
     return -1
 
 def imprimir_factura(l):
+    '''
+        Función que imprimer el contenido del pedido en un formato específico.
+    '''
     total = 0
     for i in l:
         total += i[3]
@@ -34,6 +27,9 @@ def imprimir_factura(l):
     print(f'Total factura: {total}')
 
 def generar_factura(l_prod, l_pedido):
+    '''
+        Función que procesa la lista pedida con los productos.
+    '''
     factura = []
     for i in l_pedido:
         prod = buscar_producto(i[0], l_prod)
@@ -41,5 +37,3 @@ def generar_factura(l_prod, l_pedido):
             factura.append((i[1], prod[1], prod[2], i[1] * prod[2]))
     
     imprimir_factura(factura)
-
-generar_factura(generar_lista_productos(), generar_lista_pedido())

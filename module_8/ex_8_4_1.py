@@ -47,13 +47,4 @@ def busca_todas_coincidencias(l, x):
         else:
             completo = True
            
-    return cont
-
-
-
-#buscar_coincidencias([1,2,3,4,7,1,8,0,9], 1)
-#print(f'La primera coincidencia del elemento es en la posición {primera_coincidencia([1,2,3,4,7,1,8,0,9], 19)}')
-print(f'Las posiciones donde se encuentra el elemento buscado son: {busca_todas_coincidencias([1,2,3,4,7,1,8,0,1,1], 1)} ')
-
-
- 
+    return cont 

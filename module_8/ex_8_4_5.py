@@ -17,6 +17,7 @@ def agregar_elemento(l, x):
             index += 1
         else:
             result.append(x)
+            #Agrego lo que resta recorrer de la lista
             result.extend(l[index::])
             flag = True
         
@@ -46,13 +47,12 @@ def busquda_binaria(l, x):
 
 
 def busca_elemento_en_lista(l, x):
+    '''
+        Función que se encarga de buscar un elemento en la lista y devolver su posición y si no está lo agrega donde corresponde y 
+        devuelve la posición de donde fue insertado.
+    '''
     if x in l:
         print(f'La posición del elemento {x} en la lista es: {busquda_binaria(l, x)}')
     else:
         l = agregar_elemento(l, x)
         print(f'La posición del elemento {x} en la lista es: {busquda_binaria(l, x)}')
-        
-
-#pos = busquda_binaria([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23], 20)
-#print(pos)
-busca_elemento_en_lista([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23], 23)
