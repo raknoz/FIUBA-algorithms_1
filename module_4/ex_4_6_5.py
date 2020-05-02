@@ -11,13 +11,13 @@ Consignas:
     g) Dadas dos fechas (día1, mes1, año1, día2, mes2, año2), indicar el tiempo transcurrido entre ambas, en años, meses y días.
     Nota: en todos los casos, invocar las funciones escritas previamente cuando sea posible.
 '''
-DIC_MESES_DIAS = {0:0, 1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31, 9:30, 10:31, 11:30, 12:31}
+MESES_DIAS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 def es_bisiesto(y):
     '''
         Función que retorna True o False si un año es o no bisiesto.
     '''
-    return (y % 4 == 0 and y % 100 != 0) or (y % 400 == 0)
+    return y % 4 == 0 and y % 100 != 0 or y % 400 == 0
         
 def contador_dias(m, y):
     '''
@@ -25,7 +25,7 @@ def contador_dias(m, y):
     '''
     total_dias = 0  
     for x in range(1, m + 1):
-        total_dias+= DIC_MESES_DIAS.get(x)
+        total_dias+= MESES_DIAS[x]
 
     if es_bisiesto(y) and m > 1:
         total_dias+=1
@@ -37,9 +37,11 @@ def evalua_fecha(d, m, y):
     '''
     if  (d < 1 or d > 31) or (m < 1 or m > 12) or (y < 1):
         return False
-    elif(m == 2 and not es_bisiesto(y) and d > 28):
+    
+    if m == 2 and not es_bisiesto(y) and d > 28:
         return False
-    elif(m != 2 and d > DIC_MESES_DIAS.get(m)):
+    
+    if m != 2 and d > MESES_DIAS[m]:
         return False
     return True
 
@@ -47,8 +49,8 @@ def dias_hasta_fin_de_mes(d, m, y):
     '''
         Retorna la cantidad de días que faltan hasta fin de mes de la fecha pasada por parámetros.
     '''
-    dias_total = DIC_MESES_DIAS.get(m)
-    if (m == 2 and es_bisiesto(y)):
+    dias_total = MESES_DIAS[m]
+    if m == 2 and es_bisiesto(y):
         dias_total +=1
     return dias_total - d
 
@@ -56,10 +58,10 @@ def dias_hasta_fin_de_anio(d, m, y):
     '''
         Retorna la cantidad de días que faltan hasta fin de año de la fecha pasada por parámetros.
     '''
-    total_dias_anio = sum(DIC_MESES_DIAS.values())
-    if(es_bisiesto(y)):
+    total_dias_anio = sum(MESES_DIAS)
+    if es_bisiesto(y):
         total_dias_anio+= 1
-    return total_dias_anio - (contador_dias(m - 1 , y) + d)
+    return total_dias_anio - contador_dias(m - 1 , y) + d
 
 def dias_transcurridos(d, m, y):
     ''''
@@ -81,9 +83,9 @@ def valida_bisiesto(y):
         Recibe un año y valida si es bisiesto o no.
     '''
     if es_bisiesto(y):
-        print('El año {} es biciesto'.format(y))
+        print(f'El año {y} es biciesto')
     else:
-        print('El año {} no es biciesto'.format(y))
+        print(f'El año {y} no es biciesto')
 
 def contar_dias_hasta_fecha(m, y):
     '''
@@ -95,7 +97,7 @@ def contar_dias_hasta_fecha(m, y):
     if y < 1:
         return print('El valor del año tiene que ser mayor a 1')
 
-    return print('La cantidad de días para la fecha {} / {} es de {} días'.format(m, y, contador_dias(m, y)))
+    return print(f'La cantidad de días para la fecha {m} / {y} es de {contador_dias(m, y)} días')
 
 def valida_fecha(d, m, y):
     '''
@@ -108,17 +110,17 @@ def valida_fecha(d, m, y):
 def falta_fin_de_mes(d ,m, y):
     if not evalua_fecha(d, m, y):
         return print('Fecha invalida!')
-    print('Faltan {} días para fin de mes'.format(dias_hasta_fin_de_mes(d, m, y)))
+    print(f'Faltan {dias_hasta_fin_de_mes(d, m, y)} días para fin de mes')
 
 def falta_fin_de_anio(d ,m, y):
     if not evalua_fecha(d, m, y):
         return print('Fecha invalida!')
-    print('Desde {}/{}/{} Para fin de año faltan {} días'.format(d, m, y, dias_hasta_fin_de_anio(d, m, y)))
+    print(f'Desde {d}/{m}/{y} Para fin de año faltan {dias_hasta_fin_de_anio(d, m, y)} días')
 
 def dias_transcurridos_hasta_fecha(d, m, y):
     if not evalua_fecha(d, m, y):
         return print('Fecha inválida')
-    print('Hasta el {}/{}/{} transcurrieron {} días'.format(d, m, y, contador_dias(m - 1, y) + d))
+    print(f'Hasta el {d}/{m}/{y} transcurrieron {contador_dias(m - 1, y) + d} días')
 
 def días_entre_fechas(d1, m1, y1, d2, m2, y2):
     '''
@@ -130,4 +132,4 @@ def días_entre_fechas(d1, m1, y1, d2, m2, y2):
         return print('Fecha inválida')
 
     result  = dias_hasta_fin_de_anio(d1, m1, y1) + contador_dias(m2 - 1, y2) + d2 
-    print('Entre las fechas transcurrieron: {} días'.format(result))
+    print(f'Entre las fechas transcurrieron: {result} días')
