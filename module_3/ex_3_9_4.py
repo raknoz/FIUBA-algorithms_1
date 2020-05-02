@@ -52,11 +52,7 @@ def area_cuadrilatero(x1, y1, x2, y2, x3, y3, x4, y4):
     '''
         Calcula el área de un cuadrilatero pasandole por parámetro sus puntos en el plano R2
     '''
-    ab1, ab2, ab3 = producto_vec(x1, y1, 0, x2, y2, 0)
-    bc1, bc2, bc3 = producto_vec(x2, y2, 0, x3, y3, 0)
-    cd1, cd2, cd3 = producto_vec(x3, y3, 0, x4, y4, 0)
-    da1, da2, da3 = producto_vec(x4, y4, 0, x1, y1, 0)
+    t1 = area_triangulo(x1, y1, 0, x2, y2, 0, x3, y3, 0)
+    t2 = area_triangulo(x3, y3, 0, x4, y4, 0, x1, y1, 0)
 
-    suma_norma = norma(ab1, ab2, ab3) + norma(bc1, bc2, bc3) + norma(cd1, cd2, cd3) + norma(da1, da2, da3)
-
-    return suma_norma / 2
+    return t1 + t2
