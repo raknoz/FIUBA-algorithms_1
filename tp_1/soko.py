@@ -61,6 +61,10 @@ def hay_jugador(grilla, c, f):
     '''Devuelve True si el jugador está en la columna y fila (c, f).'''
     return grilla[f][c] in (JUGADOR, OBJETIVO_JUGADOR)
 
+def esta_vacio(grilla, c, f):
+    '''Devuelve True si está vacío la posición en la columna y fila (c, f).'''
+    return VACIO == grilla[f][c]
+
 def juego_ganado(grilla):
     '''Devuelve True si el juego está ganado.'''
     for r in grilla:
@@ -78,7 +82,10 @@ def buscar_jugador(grilla):
                 return grilla[i][k], i, k
 
 def copiar_grilla(grilla):
-   return [row[:] for row in grilla]
+    '''
+        Función que copia todo el contido de una grilla.
+    '''
+    return [row[:] for row in grilla]
 
 def mover(grilla, direccion):
     '''Mueve el jugador en la dirección indicada.
@@ -99,36 +106,37 @@ def mover(grilla, direccion):
     de que el movimiento sea válido, la función devuelve una nueva grilla.
     '''
     n_grilla = copiar_grilla(grilla)
-    # 1 - busco y retorno jugador, fila y columna.
+    # Busco y retorno jugador, fila y columna de su posición.
     j, f, c = buscar_jugador(n_grilla)
-    # 2 - obtengo nueva posición + direccion.
+    # Obtengo nueva posición a moverme.
     nf, nc = f + direccion[1], c + direccion[0]
    
     # Si la posición a moverme es una pared retorno la misma grilla.
     if hay_pared(n_grilla, nc, nf):
         return n_grilla
     
+    # Verifico si hay una caja así la puedo mover y actualizar la matriz, para luego mover el jugador.
     if hay_caja(n_grilla, nc, nf):
         cf, cc = nf + direccion[1], nc + direccion[0]
+
+        # Si en la posición siguiente hay una pared o una caja, devuelvo la matriz.
         if hay_pared(n_grilla, cc, cf) or hay_caja(n_grilla, cc, cf):
             return n_grilla
         
-        caja = n_grilla[nf][nc]        
-        if n_grilla[cf][cc] == VACIO:
-            n_grilla[cf][cc] = CAJA
-        elif n_grilla[cf][cc] == OBJETIVO:
-            n_grilla[cf][cc] = OBJETIVO_CAJA
-        
+        # Muevo la caja a la nueva posición si está vacia o si hay sólo objetivo.
+        n_grilla[cf][cc] = CAJA if esta_vacio(n_grilla, cc, cf) else  OBJETIVO_CAJA
+        # Reemplazo el lugar actual de la caja.
+        caja = n_grilla[nf][nc]
         n_grilla[nf][nc] = OBJETIVO if caja == OBJETIVO_CAJA else VACIO
 
-    e = n_grilla[nf][nc]
-    # Si la posición a moverme está vacia me muevo.
-    if e == VACIO:
+    # Paso a mover al jugador si la posición está vacia.
+    if esta_vacio(n_grilla, nc, nf):
         n_grilla[nf][nc] = JUGADOR
         # Si soy jugador actualizo con vacío sino en su lugar pongo un objetivo.
         n_grilla[f][c] = VACIO if j == JUGADOR else OBJETIVO
         return n_grilla
-    
+
+    # Si hay un objetivo en la posición actualizo pongo el caracter correspondiente.
     if hay_objetivo(n_grilla, nc, nf):
         n_grilla[nf][nc] = OBJETIVO_JUGADOR
         # Si soy jugador actualizo con vacío sino en su lugar pongo un objetivo.
