@@ -1,14 +1,10 @@
-OESTE = (-1, 0)
-ESTE = (1, 0)
-NORTE = (0, -1)
-SUR = (0, 1)
-
 PARED = '#'
 CAJA = '$' 
 JUGADOR = '@' 
 OBJETIVO = '.'
-OBJ_CAJA = '*'
-OBJ_JUGADOR = '+'
+OBJETIVO_CAJA = '*'
+OBJETIVO_JUGADOR = '+'
+VACIO = ' '
 
 def crear_grilla(desc):
     '''Crea una grilla a partir de la descripción del estado inicial.
@@ -55,20 +51,20 @@ def hay_pared(grilla, c, f):
 
 def hay_objetivo(grilla, c, f):
     '''Devuelve True si hay un objetivo en la columna y fila (c, f).'''
-    return grilla[f][c] in (OBJETIVO, OBJ_CAJA, OBJ_JUGADOR)
+    return grilla[f][c] in (OBJETIVO, OBJETIVO_CAJA, OBJETIVO_JUGADOR)
 
 def hay_caja(grilla, c, f):
     '''Devuelve True si hay una caja en la columna y fila (c, f).'''
-    return  grilla[f][c] in (CAJA, OBJ_CAJA)
+    return  grilla[f][c] in (CAJA, OBJETIVO_CAJA)
 
 def hay_jugador(grilla, c, f):
     '''Devuelve True si el jugador está en la columna y fila (c, f).'''
-    return grilla[f][c] in (JUGADOR, OBJ_JUGADOR)
+    return grilla[f][c] in (JUGADOR, OBJETIVO_JUGADOR)
 
 def juego_ganado(grilla):
     '''Devuelve True si el juego está ganado.'''
     for r in grilla:
-        if CAJA in r or OBJ_JUGADOR in r:
+        if CAJA in r or OBJETIVO_JUGADOR in r:
             return False
     return True
 
@@ -76,11 +72,13 @@ def buscar_jugador(grilla):
     '''
         Función que devuelve la posición del jugador en la grilla.
     '''
-    for f in range(1, grilla):
-        for c in range(1, f):
-            if grilla[f][c] in (JUGADOR, OBJ_JUGADOR):
-                return f, c
+    for i, f in enumerate(grilla):
+        for k, c in enumerate(f):
+            if hay_jugador(grilla, k, i):
+                return grilla[i][k], i, k
 
+def copiar_grilla(grilla):
+   return [row[:] for row in grilla]
 
 def mover(grilla, direccion):
     '''Mueve el jugador en la dirección indicada.
@@ -100,4 +98,41 @@ def mover(grilla, direccion):
     movimiento efectuado. La grilla recibida NO se modifica; es decir, en caso
     de que el movimiento sea válido, la función devuelve una nueva grilla.
     '''
-    return grilla
+    n_grilla = copiar_grilla(grilla)
+    # 1 - busco y retorno jugador, fila y columna.
+    j, f, c = buscar_jugador(n_grilla)
+    # 2 - obtengo nueva posición + direccion.
+    nf, nc = f + direccion[1], c + direccion[0]
+   
+    # Si la posición a moverme es una pared retorno la misma grilla.
+    if hay_pared(n_grilla, nc, nf):
+        return n_grilla
+    
+    if hay_caja(n_grilla, nc, nf):
+        cf, cc = nf + direccion[1], nc + direccion[0]
+        if hay_pared(n_grilla, cc, cf) or hay_caja(n_grilla, cc, cf):
+            return n_grilla
+        
+        caja = n_grilla[nf][nc]        
+        if n_grilla[cf][cc] == VACIO:
+            n_grilla[cf][cc] = CAJA
+        elif n_grilla[cf][cc] == OBJETIVO:
+            n_grilla[cf][cc] = OBJETIVO_CAJA
+        
+        n_grilla[nf][nc] = OBJETIVO if caja == OBJETIVO_CAJA else VACIO
+
+    e = n_grilla[nf][nc]
+    # Si la posición a moverme está vacia me muevo.
+    if e == VACIO:
+        n_grilla[nf][nc] = JUGADOR
+        # Si soy jugador actualizo con vacío sino en su lugar pongo un objetivo.
+        n_grilla[f][c] = VACIO if j == JUGADOR else OBJETIVO
+        return n_grilla
+    
+    if hay_objetivo(n_grilla, nc, nf):
+        n_grilla[nf][nc] = OBJETIVO_JUGADOR
+        # Si soy jugador actualizo con vacío sino en su lugar pongo un objetivo.
+        n_grilla[f][c] = VACIO if j == JUGADOR else OBJETIVO
+        return n_grilla
+
+    return n_grilla
