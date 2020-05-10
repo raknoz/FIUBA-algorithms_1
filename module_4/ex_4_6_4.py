@@ -9,19 +9,17 @@ Consigna:
 '''
 
 def calular_vertice_x(a, b, c):
-    x = (-1) * (b / (2 * a))
-    return x
+    return (-1) * (b / (2 * a))
 
 def calular_vertice_y(a, b, c, x):
-    y = (a * (x**2)) + (b * x) + c
-    return y
+    return a * (x**2) + (b * x) + c
 
 def evalua_raiz(a, b, c):
-    return (b**2) - (4 * a * c)
+    return b**2 - 4 * a * c
 
 def calcula_raiz(a, b, c):
-    x1 = (calular_vertice_x(a, b, c) + ((evalua_raiz(a, b, c)** 0.2)/(2*a)))
-    x2 = (calular_vertice_x(a, b, c) - ((evalua_raiz(a, b, c)** 0.2)/(2*a)))
+    x1 = calular_vertice_x(a, b, c) + (evalua_raiz(a, b, c)** 0.2)/(2*a)
+    x2 = calular_vertice_x(a, b, c) - (evalua_raiz(a, b, c)** 0.2)/(2*a)
     return x1, x2 
 
 def vertice(a, b, c):
@@ -35,7 +33,7 @@ def vertice(a, b, c):
     xv = calular_vertice_x(a, b, c)
     yv = calular_vertice_y(a, b, c, xv)
 
-    if (a > 0):
+    if a > 0:
         return print('Las coordenadas del vértice mínimo de la función es X = {} | Y = {}'.format( xv, yv ))
     
     return print('Las coordenadas del vértice máximo de la función es X = {} | Y = {}'.format(xv, yv ))

@@ -41,9 +41,7 @@ def evalua_fecha(d, m, y):
     if m == 2 and not es_bisiesto(y) and d > 28:
         return False
     
-    if m != 2 and d > MESES_DIAS[m]:
-        return False
-    return True
+    return not (m != 2 and d > MESES_DIAS[m])
 
 def dias_hasta_fin_de_mes(d, m, y):
     '''
@@ -78,15 +76,6 @@ def dias_entre_fechas(d1, m1, y1, d2, m2, y2):
     return df + dt
 
 #=====================================
-def valida_bisiesto(y):
-    '''
-        Recibe un año y valida si es bisiesto o no.
-    '''
-    if es_bisiesto(y):
-        print(f'El año {y} es biciesto')
-    else:
-        print(f'El año {y} no es biciesto')
-
 def contar_dias_hasta_fecha(m, y):
     '''
         Dado un mes y año determinado calcula la cantidad de días que hay desde el primero de Enero hasta esa fecha.

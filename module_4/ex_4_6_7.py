@@ -5,7 +5,10 @@ Consigna:
 '''
 NUMEROS_ROMANOS = {1000:'M', 900:'CM', 500:'D', 100:'C', 90:'XC', 50:'L', 10:'X', 9:'IX', 5:'V', 1:'I'}
 
-def numeros_romanos(num): 
+def numeros_romanos(num):
+    '''
+        Función que retorna un número recibido en arábico a romano.
+    '''
     n_romano = ''
     for valor in NUMEROS_ROMANOS.keys():
         result = num // valor
