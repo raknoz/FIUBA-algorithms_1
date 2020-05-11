@@ -38,6 +38,13 @@ class Punto:
         '''
         return (self.x * self.x + self.y * self.y) ** 0.5
     
+    def desplazar(self, dx, dy):
+        '''
+            Desplaza el punto según dx y dy.
+        '''
+        self.x += dx
+        self.y += dy
+    
     def __str__(self):
         '''
             Devuelve la representación del Punto como cadena de texto.
