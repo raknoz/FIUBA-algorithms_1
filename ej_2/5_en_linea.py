@@ -79,26 +79,30 @@ def juego_actualizar(juego, x, y):
 
 def juego_mostrar(juego):
     """Actualizar la ventana"""
+    #def draw_text(text, x, y, size=12, **options)
     gamelib.draw_text('5 en línea', 150, 20)
-    gamelib.draw_text(f'Próximo Jugador: {obtener_jugador(juego)}', 150, 280)
-    gamelib.draw_rectangle(10, 35, 290, 265, fill='black', outline='white', width='2')
+    gamelib.draw_text(f'Próximo Jugador: {obtener_jugador(juego)} ', 150, 280)
+    #def draw_rectangle(x1, y1, x2, y2, **options)
+    gamelib.draw_rectangle(BORDE_IZQ_PX, BORDE_SUP_PX, BORDE_DER_PX, BORDE_INF_PX, fill='black', outline='white', width='2')
+
     #Lineas Verticales |
-    for c in range(10, 280, 28):
+    for c in range(BORDE_IZQ_PX, BORDE_DER_PX, ANCHO_CELDA_PX):
         #draw_line(x1, y1, x2, y2, **options)
-        gamelib.draw_line(c , 35, c , 265, fill='white', width=2)
+        gamelib.draw_line(c , BORDE_SUP_PX, c , BORDE_INF_PX, fill='white', width=2)
 
     #Linea horizontal -
-    for f in range(35, 265, 23):
+    for f in range(BORDE_SUP_PX, BORDE_INF_PX, ALTO_CELDA_PX):
         #draw_line(x1, y1, x2, y2, **options)
-        gamelib.draw_line(10 , f, 290 , f, fill='white', width=2)
-    
+        gamelib.draw_line(BORDE_IZQ_PX , f, BORDE_DER_PX , f, fill='white', width=2)
+
     #Dibujar contenido de la grilla
     tablero = obtener_tablero(juego)
-
     for f in range(TOTAL_FILAS):
         for c in range(TOTAL_COLUMNAS):
+            # Calculo la mitad de la celda para dibujar
             pos_x = BORDE_IZQ_PX + ANCHO_CELDA_PX * c + ANCHO_CELDA_PX // 2
             pos_y = BORDE_SUP_PX + f * ALTO_CELDA_PX  + ALTO_CELDA_PX // 2
+            # Obtengo el elemento en esa posición
             elemento = tablero[f][c]
             gamelib.draw_text(elemento, pos_x, pos_y, width='28', anchor='center')
 
