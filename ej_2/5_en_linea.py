@@ -1,5 +1,6 @@
 from tkinter import *
 import gamelib
+import pprint
 
 #Información del tablero
 CASILLERO_VACIO = ' '
@@ -41,6 +42,17 @@ def obtener_posicion(x, y):
     '''Función que dadas dos coordenadas X e Y, devuelte la posición en fila y columna'''
     return (y-BORDE_SUP_PX)//ALTO_CELDA_PX, (x-BORDE_IZQ_PX)//ANCHO_CELDA_PX
 
+def informacion_juego(juego):
+    '''Muestra la información del juego'''
+    print('Información del juego:')
+    print(f'* Jugador actual: {obtener_jugador(juego)}')
+    print(f'* Cantidad de movimientos: {juego["total_movimientos"]}')
+    print(f'* Total de movimientos X: {juego["movimientos_X"]}')
+    print(f'* Total de movimientos Y: {juego["movimientos_Y"]}')
+    print()
+    print("* Tablero:")
+    pprint.pprint(obtener_tablero(juego))
+
 #Fin funciones auxiliares
 
 def juego_crear():
@@ -55,6 +67,9 @@ def juego_crear():
     
     juego['tablero'] = tablero
     juego['jugador'] = JUGADOR_X
+    juego['total_movimientos'] = 0
+    juego['movimientos_X'] = []
+    juego['movimientos_Y'] = []
     return juego
 
 def juego_actualizar(juego, x, y):
@@ -72,8 +87,14 @@ def juego_actualizar(juego, x, y):
     if not es_posicion_valida(col, fila) or not casillero_vacio(tablero, col, fila):
         return juego
 
-    tablero[fila][col] = obtener_jugador(juego)
+    jugador = obtener_jugador(juego)
+    tablero[fila][col] = jugador
     juego['jugador'] = obtener_siguiente(juego)
+    juego['total_movimientos'] += 1
+    if JUGADOR_X == jugador:
+        juego['movimientos_X'].append((fila, col))
+    else:
+        juego['movimientos_Y'].append((fila, col))
 
     return juego
 
