@@ -10,8 +10,8 @@ TOTAL_FILAS = 10
 TOTAL_COLUMNAS = 10
 BORDE_SUP_PX = 35
 BORDE_INF_PX = 265
-BORDE_DER_PX = 10
-BORDE_IZQ_PX = 290
+BORDE_DER_PX = 290
+BORDE_IZQ_PX = 10
 ANCHO_CELDA_PX = 28
 ALTO_CELDA_PX = 23
 
@@ -29,9 +29,9 @@ def obtener_siguiente(juego):
     '''Devuelve el siguiente jugador de acuerdo a cual fue el anterior'''
     return JUGADOR_X if obtener_jugador(juego) == JUGADOR_O else JUGADOR_O
 
-def casillero_vacio(juego, x, y):
+def casillero_vacio(tablero, x, y):
     '''Devuelve True or False dependiendo de si el casillero está vacío o no'''
-    return obtener_tablero(juego)[y][x] == CASILLERO_VACIO
+    return tablero[y][x] == CASILLERO_VACIO
 
 def es_posicion_valida(x, y):
     '''Devuelve que los parámetros x e y estén dentro de los límites'''
@@ -39,9 +39,9 @@ def es_posicion_valida(x, y):
 
 def obtener_posicion(x, y):
     '''Función que dadas dos coordenadas X e Y, devuelte la posición en fila y columna'''
-    return (y-BORDE_SUP_PX)//ALTO_CELDA_PX, (x-BORDE_DER_PX)//ANCHO_CELDA_PX
+    return (y-BORDE_SUP_PX)//ALTO_CELDA_PX, (x-BORDE_IZQ_PX)//ANCHO_CELDA_PX
 
-# Fin funciones propias #
+#Fin funciones auxiliares
 
 def juego_crear():
     """Inicializar el estado del juego"""
@@ -64,10 +64,16 @@ def juego_actualizar(juego, x, y):
     Esta función determina si esas coordenadas corresponden a una celda
     del tablero; en ese caso determina el nuevo estado del juego y lo
     devuelve.
-    """
-    print(f'muestro coordenadas: {x} | {y}')
+    """ 
+    #Conversor de pixeles a Fila columna    
+    tablero = obtener_tablero(juego)    
     fila, col = obtener_posicion(x, y)
 
+    if not es_posicion_valida(col, fila) or not casillero_vacio(tablero, col, fila):
+        return juego
+
+    tablero[fila][col] = obtener_jugador(juego)
+    juego['jugador'] = obtener_siguiente(juego)
 
     return juego
 
@@ -85,6 +91,16 @@ def juego_mostrar(juego):
     for f in range(35, 265, 23):
         #draw_line(x1, y1, x2, y2, **options)
         gamelib.draw_line(10 , f, 290 , f, fill='white', width=2)
+    
+    #Dibujar contenido de la grilla
+    tablero = obtener_tablero(juego)
+
+    for f in range(TOTAL_FILAS):
+        for c in range(TOTAL_COLUMNAS):
+            pos_x = BORDE_IZQ_PX + ANCHO_CELDA_PX * c + ANCHO_CELDA_PX // 2
+            pos_y = BORDE_SUP_PX + f * ALTO_CELDA_PX  + ALTO_CELDA_PX // 2
+            elemento = tablero[f][c]
+            gamelib.draw_text(elemento, pos_x, pos_y, width='28', anchor='center')
 
 def main():
     juego = juego_crear()
