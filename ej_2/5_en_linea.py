@@ -48,7 +48,7 @@ def informacion_juego(juego):
     print(f'* Jugador actual: {obtener_jugador(juego)}')
     print(f'* Cantidad de movimientos: {juego["total_movimientos"]}')
     print(f'* Total de movimientos X: {juego["movimientos_X"]}')
-    print(f'* Total de movimientos Y: {juego["movimientos_Y"]}')
+    print(f'* Total de movimientos O: {juego["movimientos_O"]}')
     print()
     print("* Tablero:")
     pprint.pprint(obtener_tablero(juego))
@@ -69,7 +69,7 @@ def juego_crear():
     juego['jugador'] = JUGADOR_X
     juego['total_movimientos'] = 0
     juego['movimientos_X'] = []
-    juego['movimientos_Y'] = []
+    juego['movimientos_O'] = []
     return juego
 
 def juego_actualizar(juego, x, y):
@@ -94,7 +94,9 @@ def juego_actualizar(juego, x, y):
     if JUGADOR_X == jugador:
         juego['movimientos_X'].append((fila, col))
     else:
-        juego['movimientos_Y'].append((fila, col))
+        juego['movimientos_O'].append((fila, col))
+
+    informacion_juego(juego)
 
     return juego
 
