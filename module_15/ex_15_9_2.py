@@ -1,6 +1,6 @@
 '''
 Consigna:
-    Implementar el método __str__ de ListaEnlazada, para que se genere una salida legible de lo que contiene la lista, similar a las listas de python.
+    Agregar a ListaEnlazada un método extend que reciba una ListaEnlazada y agregue a la lista actual los elementos que se encuentran en la lista recibida.
 '''
 from IteradorListaEnlazada import IteradorListaEnlazada
 
@@ -97,6 +97,13 @@ class ListaEnlazada:
     def append(self, x):
         ''' Función que se encarga de insertar x en la última posicion de la lista'''
         self.insert(self.len, x)
+
+    def extend(self, o_lista):
+        ''' Función que recibe una ListaEnlazada y agregua a la lista actual los elementos que se encuentran en la lista recibida '''
+        n_ant = o_lista.prim
+        for pos in range(0, o_lista.len):
+            self.append(n_ant.dato)
+            n_ant = n_ant.prox
 
     class _Nodo:
         def __init__(self, dato=None, prox=None):
