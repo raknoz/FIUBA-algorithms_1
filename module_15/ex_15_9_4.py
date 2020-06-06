@@ -1,6 +1,6 @@
 '''
 Consigna:
-    Implementar el método __str__ de ListaEnlazada, para que se genere una salida legible de lo que contiene la lista, similar a las listas de python.
+    Implementar el método duplicar(elemento) de ListaEnlazada, que recibe un elemento y duplica todas las apariciones del mismo.
 '''
 from IteradorListaEnlazada import IteradorListaEnlazada
 
@@ -53,7 +53,7 @@ class ListaEnlazada:
         return dato
 
     def remove(self, x):
-        ''' Borra la primera aparición del valor x en la lista.Si x no está en la lista, levanta ValueError'''
+        ''' Borra la primera aparición del valor x en la lista. Si x no está en la lista, levanta ValueError'''
         
         if self.len == 0:
             raise ValueError('Lista vacía')
@@ -101,6 +101,55 @@ class ListaEnlazada:
     def append(self, x):
         ''' Función que se encarga de insertar x en la última posicion de la lista'''
         self.insert(self.len, x)
+
+    def extend(self, o_lista):
+        ''' Función que recibe una ListaEnlazada y agregua a la lista actual los elementos que se encuentran en la lista recibida '''
+        n_ant = o_lista.prim
+        for pos in range(0, o_lista.len):
+            self.append(n_ant.dato)
+            n_ant = n_ant.prox
+
+    def remover_todos(self, x):
+        ''' Funcion que recibe un elemento y remueve de la lista todas las apariciones del mismo, devolviendo la cantidad de elementos removidos'''
+        count = 0
+        if self.len == 0:
+            return count
+
+        #Busco el elemento en la cabecera
+        while self.prim is not None and self.prim.dato == x:
+            self.prim = self.prim.prox
+            count += 1
+            self.len -= 1
+
+        if self.prim is None:
+            return count
+
+        n_ant = self.prim
+        n_act = self.prim.prox 
+        while n_act is not None:
+            if n_act.dato == x:                
+                # Descartar el nodo
+                n_ant.prox = n_act.prox
+                self.len -= 1
+                count += 1
+            else:
+                n_ant = n_act
+            #Paso al siguiente
+            n_act = n_act.prox
+
+        self.ult = n_ant
+        return count
+
+    def duplicar(self, e):
+        ''' Función que recibe un elemento e y duplica todos las ocurrencia es la lista. '''
+        n_act = self.prim
+        pos = 0
+        while pos  < self.len:
+            if n_act.dato == e:
+                self.insert(pos, e)
+                pos+=1
+            pos+=1
+            n_act = n_act.prox
 
     class _Nodo:
         def __init__(self, dato=None, prox=None):
