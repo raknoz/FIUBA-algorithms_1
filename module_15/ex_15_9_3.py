@@ -21,12 +21,14 @@ class ListaEnlazada(ListaEnlazadaBase):
             self.len -= 1
 
         if self.prim is None:
+            #Si no tiene primero, tampoco tiene último
+            self.ult = None
             return count
 
         n_ant = self.prim
         n_act = self.prim.prox 
         while n_act is not None:
-            if n_act.dato == x:                
+            if n_act.dato == x:    
                 # Descartar el nodo
                 n_ant.prox = n_act.prox
                 self.len -= 1
