@@ -94,7 +94,7 @@ class ListaEnlazada:
             nuevo.prox = n_ant.prox
             n_ant.prox = nuevo
         
-        if i == self.len:
+        if i == self.len or self.len == 0:
              self.ult = nuevo
         self.len += 1
 
