@@ -6,39 +6,45 @@ import pprint
 #Diccionarios de información
 D_MOVIMIENTOS = {}
 D_NIVELES = {}
-D_DIRECCIONES = {'NORTE':(0, -1), 'SUR':(0, 1), 'ESTE':(1, 0), 'OESTE':(-1, 0)}
+D_COORDENADAS = {'NORTE':(0, -1), 'SUR':(0, 1), 'ESTE':(1, 0), 'OESTE':(-1, 0)}
+L_OPCIONES = ['SALIR', 'REINICIAR']
 D_OPCIONES = {}
-LIMITE_NIVELES = 2
+LIMITE_NIVELES = 1
 NIVEL_INICIAL = 1
 
 #Tamaño de la imagen
-IMG_PX = 64
+IMG_PX = 40
 
-def path_to_img(argument): 
+def path_to_img(argument):
     switcher = { 
-        '#': 'img_v2/wall.png', 
-        '*': 'img_v2/box_goal.png', 
-        '@': 'img_v2/ground_player.png', 
-        ' ': 'img_v2/ground.png',
-        '$': 'img_v2/box.png',
-        '.': 'img_v2/ground_goal.png',
-        '+': 'img_v2/player_goal.png',
+        '#': 'img_40/wall.png', 
+        '*': 'img_40/box_goal.png', 
+        '@': 'img_40/ground_player.png', 
+        ' ': 'img_40/ground.png',
+        '$': 'img_40/box.png',
+        '.': 'img_40/ground_goal.png',
+        '+': 'img_40/player_goal.png',
     }
-    return switcher.get(argument, 'img_v2/ground.gif')
+    return switcher.get(argument, 'img_40/wall.png')
 
 def cargar_configuracion_teclas():
     ''' Función que se encarga de cargar la configuración de las teclas '''
     #Lectura del archivo de teclas y armado del diccionario
-    D_MOVIMIENTOS['Up'] = 'NORTE'
-    D_MOVIMIENTOS['Left'] = 'OESTE'
-    D_MOVIMIENTOS['Down'] = 'SUR'
-    D_MOVIMIENTOS['Right'] = 'ESTE'
-    D_OPCIONES['Escape'] = 'SALIR'
-    D_OPCIONES['r'] = 'REINICIAR'
+    ''' Función que lee un archivo con la configuración  de teclas y devuelve un mapa con los datos obtenidos. '''
+    with open('teclas.txt', "r") as f:
+        lines = (line.rstrip() for line in f) 
+        lines = list(line.replace(' ', '') for line in lines if line) # Non-blank lines in a list
+        l_keys = D_COORDENADAS.keys()
+        for line in lines:
+            key, mov = line.split('=')
+            if mov in l_keys:
+                D_MOVIMIENTOS[key] = D_COORDENADAS.get(mov)
+            elif mov in L_OPCIONES:
+                D_OPCIONES[key] = mov
 
 def cargar_configuracion_niveles():
     ''' Función que se encarga de cargar la configuración de los niveles '''
-    D_NIVELES[1] = [
+    D_NIVELES[2] = [
         'Level 1', 
         '####', 
         '# .#', 
@@ -48,33 +54,30 @@ def cargar_configuracion_niveles():
         '#  ###', 
         '####']
 
-    D_NIVELES[2] = [ 
-        'Level 154',
-        '############################',
-        '#                          #',
-        '# ######################## #',
-        '# #                      # #',
-        '# # #################### # #',
-        '# # #                  # # #',
-        '# # # ################ # # #',
-        '# # # #              # # # #',
-        '# # # # ############ # # # #',
-        '# # # # #            # # # #',
-        '# # # # # ############ # # #',
-        '# # # # #              # # #',
-        '# # # # ################ # #',
-        '# # # #                  # #',
+    D_NIVELES[1] = [ 
+        ' Level 154',
+        ' ############################',
+        ' #                          #',
+        ' # ######################## #',
+        ' # #                      # #',
+        ' # # #################### # #',
+        ' # # #                  # # #',
+        ' # # # ################ # # #',
+        ' # # # #              # # # #',
+        ' # # # # ############ # # # #',
+        ' # # # # #            # # # #',
+        ' # # # # # ############ # # #',
+        ' # # # # #              # # #',
+        ' # # # # ################ # #',
+        ' # # # #                  # #',
         '##$# # #################### #',
         '#. @ #                      #',
         '#############################']
 
 def juego_actualizar(partida, tecla):
-    ''' Actualizar el estado del juego x e y son las coordenadas (en pixels) donde el usuario hizo click.
-    Esta función determina si esas coordenadas corresponden a una celda del tablero; 
-    en ese caso determina el nuevo estado del juego y lo devuelve.'''
-    
-    t_coordenadas = D_DIRECCIONES.get(D_MOVIMIENTOS.get(tecla))
-    partida.tablero = soko.mover(partida.tablero, t_coordenadas)
+    ''' Actualizar el estado del juego tecla es el botón que se presionó. 
+        obtiene el movimiento hacia donde moverse y determina el nuevo estado del juego y lo devuelve.'''
+    partida.tablero = soko.mover(partida.tablero, D_MOVIMIENTOS.get(tecla))
     if soko.juego_ganado(partida.tablero):
         return siguiente_nivel(partida.nivel)
     return partida
@@ -132,8 +135,6 @@ def main():
 
 class _Partida():
     '''Objeto que contiene toda la información de la partida actual.'''
-    LETRAS_AZ = ['abcdefghijklmnopqrstuvwxyz']
-
     def obtener_tablero_titulo(self, nivel):
         ''' Función que se encarga de obtener el tablero y el título. '''
         return nivel[1::], nivel[:1]
