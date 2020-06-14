@@ -9,11 +9,17 @@ D_NIVELES = {}
 D_COORDENADAS = {'NORTE':(0, -1), 'SUR':(0, 1), 'ESTE':(1, 0), 'OESTE':(-1, 0)}
 L_OPCIONES = ['SALIR', 'REINICIAR']
 D_OPCIONES = {}
-LIMITE_NIVELES = 1
 NIVEL_INICIAL = 1
 
 #Tamaño de la imagen
 IMG_PX = 40
+
+def es_titulo(cadena):
+    ''' Función que valida si una cadena determinada contiene caracteres alfanuméricos'''
+    for chr in cadena:
+        if chr.isalnum():
+            return True
+    return False
 
 def path_to_img(argument):
     switcher = { 
@@ -27,11 +33,11 @@ def path_to_img(argument):
     }
     return switcher.get(argument, 'img_40/wall.png')
 
-def cargar_configuracion_teclas():
+def cargar_configuracion_teclas(n_file):
     ''' Función que se encarga de cargar la configuración de las teclas '''
     #Lectura del archivo de teclas y armado del diccionario
     ''' Función que lee un archivo con la configuración  de teclas y devuelve un mapa con los datos obtenidos. '''
-    with open('teclas.txt', "r") as f:
+    with open(n_file, "r") as f:
         lines = (line.rstrip() for line in f) 
         lines = list(line.replace(' ', '') for line in lines if line) # Non-blank lines in a list
         l_keys = D_COORDENADAS.keys()
@@ -42,44 +48,36 @@ def cargar_configuracion_teclas():
             elif mov in L_OPCIONES:
                 D_OPCIONES[key] = mov
 
-def cargar_configuracion_niveles():
+def cargar_configuracion_niveles(n_file):
     ''' Función que se encarga de cargar la configuración de los niveles '''
-    D_NIVELES[2] = [
-        'Level 1', 
-        '####', 
-        '# .#', 
-        '#  ###', 
-        '#*@  #', 
-        '#  $ #', 
-        '#  ###', 
-        '####']
-
-    D_NIVELES[1] = [ 
-        ' Level 154',
-        ' ############################',
-        ' #                          #',
-        ' # ######################## #',
-        ' # #                      # #',
-        ' # # #################### # #',
-        ' # # #                  # # #',
-        ' # # # ################ # # #',
-        ' # # # #              # # # #',
-        ' # # # # ############ # # # #',
-        ' # # # # #            # # # #',
-        ' # # # # # ############ # # #',
-        ' # # # # #              # # #',
-        ' # # # # ################ # #',
-        ' # # # #                  # #',
-        '##$# # #################### #',
-        '#. @ #                      #',
-        '#############################']
-
+    with open(n_file, 'r') as f:
+        l_nivel = []
+        nivel = 1
+        titulo_nivel = []
+        for linea in f:
+            linea = linea.rstrip('\n').rstrip() #Limpio la línea de espacios y del caracter final de salto de línea
+            if linea:
+                if es_titulo(linea): #Es parte del título
+                    titulo_nivel.append(linea)
+                else: #Es parte del nivel
+                    l_nivel.append(linea)
+            elif len(l_nivel) > 0:
+                l_nivel.insert(0, ' - '.join(titulo_nivel))
+                D_NIVELES[nivel] = l_nivel
+                titulo_nivel = []
+                l_nivel = []
+                nivel+=1
+        if len(l_nivel) > 0:
+            l_nivel.insert(0, ' - '.join(titulo_nivel))
+            D_NIVELES[nivel] = l_nivel
+   
 def juego_actualizar(partida, tecla):
     ''' Actualizar el estado del juego tecla es el botón que se presionó. 
         obtiene el movimiento hacia donde moverse y determina el nuevo estado del juego y lo devuelve.'''
     partida.tablero = soko.mover(partida.tablero, D_MOVIMIENTOS.get(tecla))
     if soko.juego_ganado(partida.tablero):
-        return siguiente_nivel(partida.nivel)
+        juego_mostrar(partida.tablero)
+        return siguiente_nivel(partida.nivel_actual, partida.total_niveles)
     return partida
 
 def juego_mostrar(tablero):
@@ -89,28 +87,29 @@ def juego_mostrar(tablero):
             img = path_to_img(col)
             gamelib.draw_image(img, ic * IMG_PX, ir * IMG_PX)
 
-def siguiente_nivel(nivel_actual):
+def siguiente_nivel(nivel_actual, total_niveles):
     '''Función que se encarga de cargar el siguiente nivel'''
     prox_nivel = nivel_actual + 1
-    if nivel_actual == LIMITE_NIVELES:
+    if nivel_actual == total_niveles:
         gamelib.say("Finalizó el juego!!!")
         prox_nivel = NIVEL_INICIAL 
-    return _Partida(soko.crear_grilla(D_NIVELES.get(prox_nivel)))
+    return _Partida(soko.crear_grilla(D_NIVELES.get(prox_nivel)), prox_nivel)
 
 def main():
     #1 Carga los niveles
-    cargar_configuracion_niveles()
+    cargar_configuracion_niveles('niveles.txt')
 
     #2 Carga de teclas
-    cargar_configuracion_teclas()
+    cargar_configuracion_teclas('teclas.txt')
     
     #3 Inicio de partida nivel 1
-    partida = _Partida(soko.crear_grilla(D_NIVELES.get(NIVEL_INICIAL)))
+    partida = _Partida(soko.crear_grilla(D_NIVELES.get(NIVEL_INICIAL)), NIVEL_INICIAL)
     
     while gamelib.is_alive():
         gamelib.resize(partida.max_columnas * IMG_PX, partida.max_filas * IMG_PX)
+        gamelib.title(partida.titulo)
         gamelib.draw_begin()
-        # Dibujar la pantalla
+        # Dibujar la pantalla 
         juego_mostrar(partida.tablero)
         gamelib.draw_end()
 
@@ -131,13 +130,12 @@ def main():
 
         if tecla in D_MOVIMIENTOS.keys():
             partida = juego_actualizar(partida, tecla)
-    
 
 class _Partida():
     '''Objeto que contiene toda la información de la partida actual.'''
     def obtener_tablero_titulo(self, nivel):
         ''' Función que se encarga de obtener el tablero y el título. '''
-        return nivel[1::], nivel[:1]
+        return nivel[1::], ' '.join(nivel[0])
 
     def copiar_tablero(self):
         ''' Función que copia todo el contido de una grilla. '''
@@ -151,15 +149,12 @@ class _Partida():
         ''' Función que devuelve la cantidad de columnas del tablero.'''
         return len(max(self.tablero, key=len))
 
-    def actualizar_tablero(self, n_tablero):
-        self.tablero = n_tablero
-
-    def __init__(self, nivel):
-        self.tablero, self.titulo = self.obtener_tablero_titulo(nivel)
-        self.nivel = 1
+    def __init__(self, esquema, nivel):
+        self.tablero, self.titulo = self.obtener_tablero_titulo(esquema)
+        self.nivel_actual = nivel
         self.original = self.copiar_tablero()
         self.max_filas = self.obtener_max_filas()
         self.max_columnas = self.obtener_max_columnas()
-        self.juego_ganado = False
+        self.total_niveles = len(D_NIVELES)
 
 gamelib.init(main)
