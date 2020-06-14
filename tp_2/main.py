@@ -1,13 +1,13 @@
 from tkinter import *
 import gamelib
 import soko
-import pprint
+import os
 
 #Diccionarios de información
 D_MOVIMIENTOS = {}
 D_NIVELES = {}
 D_COORDENADAS = {'NORTE':(0, -1), 'SUR':(0, 1), 'ESTE':(1, 0), 'OESTE':(-1, 0)}
-L_OPCIONES = ['SALIR', 'REINICIAR']
+L_OPCIONES = ['SALIR', 'REINICIAR', 'CARGAR', 'GUARDAR']
 D_OPCIONES = {}
 NIVEL_INICIAL = 1
 
@@ -32,6 +32,21 @@ def path_to_img(argument):
         '+': 'img_40/player_goal.png',
     }
     return switcher.get(argument, 'img_40/wall.png')
+
+def guardar_partida(n_file, nivel_actual=0):
+    ''' Función que se encarga de guarda el último nivel ganado. '''
+    with open(n_file, 'w') as f:
+        f.write(str(nivel_actual - 1))
+
+def cargar_partida(n_file):
+    '''Función que lee un archivo y carga el último nivel guardado.'''
+    nivel = 0
+    if os.path.exists(n_file):
+        with open(n_file, 'r') as f:
+            for linea in f:
+                linea = linea.rstrip('\n').rstrip()
+            nivel = int(linea) if linea.isdigit() else nivel
+    return siguiente_nivel(nivel, len(D_NIVELES))
 
 def cargar_configuracion_teclas(n_file):
     ''' Función que se encarga de cargar la configuración de las teclas '''
@@ -127,6 +142,14 @@ def main():
         if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'REINICIAR':
             # El usuario presionó la tecla Escape, cerrar la aplicación.
             partida.tablero = partida.original
+        
+        if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'CARGAR':
+            # El usuario presionó la tecla Escape, cerrar la aplicación.
+            partida = cargar_partida('sokoban_save.txt')
+
+        if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'GUARDAR':
+            # El usuario presionó la tecla Escape, cerrar la aplicación.
+            guardar_partida('sokoban_save.txt', partida.nivel_actual)
 
         if tecla in D_MOVIMIENTOS.keys():
             partida = juego_actualizar(partida, tecla)

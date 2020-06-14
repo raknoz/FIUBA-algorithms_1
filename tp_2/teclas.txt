@@ -11,3 +11,7 @@ d = ESTE
 r = REINICIAR
 
 Escape = SALIR
+
+l = CARGAR
+
+g = GUARDAR
