@@ -15,7 +15,16 @@ class ListaEnlazada(ListaEnlazadaBase):
         n_act = self.prim
         for pos in range(0, self.len):
             if f(n_act.dato):
-                nuevo = self._Nodo(n_act.dato)
+                nuevo = _Nodo(n_act.dato)
                 l_aux.append(nuevo)
             n_act = n_act.prox
         return l_aux
+
+class _Nodo():
+    def __init__(self, dato=None, prox=None, ant=None):
+        self.dato = dato
+        self.prox = prox
+        self.ant = ant
+    
+    def __str__(self):
+        return str(self.dato)

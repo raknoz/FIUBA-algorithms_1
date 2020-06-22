@@ -79,7 +79,7 @@ class ListaEnlazada:
         if i < 0 or i > self.len:
             raise IndexError('Posición inválida')
         
-        nuevo = self._Nodo(x)
+        nuevo = _Nodo(x)
         if i == 0:
         # Caso particular: insertar al principio
             nuevo.prox = self.prim
@@ -102,10 +102,10 @@ class ListaEnlazada:
         ''' Función que se encarga de insertar x en la última posicion de la lista'''
         self.insert(self.len, x)
 
-    class _Nodo:
-        def __init__(self, dato=None, prox=None):
-            self.dato = dato
-            self.prox = prox
-        
-        def __str__(self):
-            return str(self.dato)
+class _Nodo():
+    def __init__(self, dato=None, prox=None):
+        self.dato = dato
+        self.prox = prox
+    
+    def __str__(self):
+        return str(self.dato)
