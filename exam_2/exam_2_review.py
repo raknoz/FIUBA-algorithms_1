@@ -34,7 +34,7 @@ def procesa_linea(linea, d_dialogo):
     nom_persona, palabras = tmp_datos[0], tmp_datos[1:]
     d_palabras = d_dialogo.get(nom_persona, {})
 
-    for palabra in palabras:
+    for palabra in palabras.split(' '):
         d_palabras[palabra] = d_palabras.get(palabra, 0) + 1
     d_dialogo[nom_persona] = d_palabras
     
@@ -43,11 +43,11 @@ def procesa_linea(linea, d_dialogo):
 def procesa_dialogo(archivo):
     ''' Función que procesa un archivo de dialogo y devuelve un mapa con la cantidad de palabras escritas por personas '''
     d_dialogo = {}
-    with open('dialogo.txt', 'r') as dialogo:
+    with open(archivo, 'r') as dialogo:
         for linea in dialogo:
-            d_dialogo = procesa_linea(linea, d_dialogo)
+            procesa_linea(linea, d_dialogo)
     
-    print(d_dialogo)
+    return d_dialogo
 
 
 ''' 
@@ -115,7 +115,7 @@ class CajaFuerte():
         return aux
     
     def guardar(self, item):
-        if not self.abierta:
+        if not self.esta_abierta():
             raise Exception('La caja fuerte está cerrada')
         if not self.esta_vacia():
             raise Exception('No se puede guardar más de una cosa')
