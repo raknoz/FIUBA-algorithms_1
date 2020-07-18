@@ -3,7 +3,7 @@ Consigna:
     Escribir una clase TorreDeControl que modele el trabajo de una torre de control de un aeropuerto con una pista de aterrizaje. 
     Los aviones que están esperando para aterrizar tienen prioridad sobre los que están esperando para despegar.
 '''
-from cola import Cola
+from Cola import Cola
 
 class TorreDeControl():
     def __init__(self):

@@ -3,7 +3,7 @@
     Escribir las clases Impresora y Oficina que permita modelar el funcionamiento de un conjunto de impresoras conectadas en red.
 
 '''
-from cola import Cola
+from Cola import Cola
 
 class Oficina:
 

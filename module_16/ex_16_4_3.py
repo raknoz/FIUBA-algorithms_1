@@ -12,7 +12,7 @@
         de los pasajeros en la parada.
         ---> (43,'p'), (80,'c',1) <---
 '''
-from cola import Cola
+from Cola import Cola
 
 def promedio_espera(eventos):
     ''' Función que recibe una lista de eventos ordenada cronológicamente y y devuelva el promedio de tiempo de espera de los pasajeros. '''
