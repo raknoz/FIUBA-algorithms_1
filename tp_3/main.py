@@ -1,4 +1,5 @@
 from tkinter import *
+from Pila import Pila
 import gamelib
 import soko
 import os
@@ -7,7 +8,7 @@ import os
 D_MOVIMIENTOS = {}
 D_NIVELES = {}
 D_COORDENADAS = {'NORTE':(0, -1), 'SUR':(0, 1), 'ESTE':(1, 0), 'OESTE':(-1, 0)}
-L_OPCIONES = ['SALIR', 'REINICIAR', 'CARGAR', 'GUARDAR']
+L_OPCIONES = ['SALIR', 'REINICIAR', 'CARGAR', 'GUARDAR', 'DESHACER', 'PISTAS']
 D_OPCIONES = {}
 NIVEL_INICIAL = 1
 
@@ -89,9 +90,16 @@ def cargar_configuracion_niveles(n_file):
 def juego_actualizar(partida, tecla):
     ''' Actualizar el estado del juego tecla es el botón que se presionó. 
         obtiene el movimiento hacia donde moverse y determina el nuevo estado del juego y lo devuelve.'''
-    partida.tablero = soko.mover(partida.tablero, D_MOVIMIENTOS.get(tecla))
-    if soko.juego_ganado(partida.tablero):
-        juego_mostrar(partida.tablero)
+    #Guardo el estado anterior para luego comparar con el movimiento.
+    tablero_tmp = partida.obtener_tablero()
+    partida.actualizar_tablero(soko.mover(partida.obtener_tablero(), D_MOVIMIENTOS.get(tecla)))
+
+    #Si el tablero sufrió cambios, lo guardo
+    if tablero_tmp != partida.obtener_tablero():
+        partida.agregar_movimiento(tablero_tmp)
+
+    if soko.juego_ganado(partida.obtener_tablero()):
+        juego_mostrar(partida.obtener_tablero())
         return siguiente_nivel(partida.nivel_actual, partida.total_niveles)
     return partida
 
@@ -125,7 +133,7 @@ def main():
         gamelib.title(partida.titulo)
         gamelib.draw_begin()
         # Dibujar la pantalla 
-        juego_mostrar(partida.tablero)
+        juego_mostrar(partida.obtener_tablero())
         gamelib.draw_end()
 
         ev = gamelib.wait(gamelib.EventType.KeyPress)
@@ -140,16 +148,20 @@ def main():
             break
 
         if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'REINICIAR':
-            # El usuario presionó la tecla Escape, cerrar la aplicación.
-            partida.tablero = partida.original
+            # El usuario presionó la tecla r, reinicia la aplicación.
+            partida.reiniciar_partida()            
         
         if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'CARGAR':
-            # El usuario presionó la tecla Escape, cerrar la aplicación.
+            # El usuario presionó la tecla l, carga el último nivel completo.
             partida = cargar_partida('sokoban_save.txt')
 
         if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'GUARDAR':
-            # El usuario presionó la tecla Escape, cerrar la aplicación.
+            # El usuario presionó la tecla g, guarda el último nivel completo.
             guardar_partida('sokoban_save.txt', partida.nivel_actual)
+
+        if ev.type == gamelib.EventType.KeyPress and D_OPCIONES.get(ev.key) == 'DESHACER':
+            # El usuario presionó la tecla q, carga el último movimiento.
+            partida.tablero = partida.obtener_ultimo_movimiento()
 
         if tecla in D_MOVIMIENTOS.keys():
             partida = juego_actualizar(partida, tecla)
@@ -172,6 +184,31 @@ class _Partida():
         ''' Función que devuelve la cantidad de columnas del tablero.'''
         return len(max(self.tablero, key=len))
 
+    def agregar_movimiento(self, tablero):
+        ''' Función que agrega el movimiento realizado. '''
+        if self.movimientos.esta_vacia():
+            self.movimientos.apilar(self.original)
+        self.movimientos.apilar(tablero)
+
+    def obtener_ultimo_movimiento(self):
+        ''' Función que devuelve el último movimiento realizado. Si no hay movimientos retorna el tablero original. '''
+        if self.movimientos.esta_vacia():
+            return self.tablero
+        return self.movimientos.desapilar()
+
+    def reiniciar_partida(self):
+        ''' Función que reinicia los valores del nivel.'''
+        self.tablero = self.original
+        self.movimientos = Pila()
+
+    def actualizar_tablero(self, _tablero):
+        ''' Función que actualiza el moviento en el tablero. '''
+        self.tablero = _tablero
+    
+    def obtener_tablero(self):
+        ''' Función que devuelve el tablero de la partida. '''
+        return self.tablero
+
     def __init__(self, esquema, nivel):
         self.tablero, self.titulo = self.obtener_tablero_titulo(esquema)
         self.nivel_actual = nivel
@@ -179,5 +216,7 @@ class _Partida():
         self.max_filas = self.obtener_max_filas()
         self.max_columnas = self.obtener_max_columnas()
         self.total_niveles = len(D_NIVELES)
+        self.movimientos = Pila()
+        
 
 gamelib.init(main)
