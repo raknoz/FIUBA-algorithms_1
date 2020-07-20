@@ -15,6 +15,10 @@ NIVEL_INICIAL = 1
 #Tamaño de la imagen
 IMG_PX = 40
 
+def es_movimiento_valido(original, nueva):
+    ''' Función que compara si ambos tableros son identicos. '''
+
+
 def es_titulo(cadena):
     ''' Función que valida si una cadena determinada contiene caracteres alfanuméricos'''
     for chr in cadena:
