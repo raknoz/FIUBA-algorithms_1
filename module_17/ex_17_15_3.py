@@ -7,9 +7,8 @@ def rec_es_potencia(n, b, a):
         return True
     if n < b:
         return False   
-    else:
-        return rec_es_potencia(n, b * a, a)
-
+    
+    return rec_es_potencia(n, b * a, a)
 
 def es_potencia(n, b):
     return rec_es_potencia(n, b, b)

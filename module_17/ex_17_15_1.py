@@ -8,5 +8,4 @@ def contador_digitos(n):
     if n < 10:
         return 1
     else:
-        print(n/10)
         return 1 + contador_digitos(n // 10)

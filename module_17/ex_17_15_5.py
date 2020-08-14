@@ -8,11 +8,9 @@ Consigna:
 def par(n):
     if n == 1:
         return False
-    else:
-        return True and impar(n - 1)
+    return True and impar(n - 1)
 
 def impar(n):
     if n == 1:
         return True
-    else:
-        return True and par(n - 1)
+    return True and par(n - 1)

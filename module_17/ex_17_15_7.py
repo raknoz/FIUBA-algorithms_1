@@ -5,15 +5,16 @@ Consigna:
 '''
 from Pila import Pila
 
-contador = 0
-
-def contador_recursivo(pila):
+def _contador_recursivo(pila):
     ''' Función que calcula recursivamente cuantos elemetos tiene una pila.'''
-    global contador
     elemento = pila.desapilar()
     if not elemento:
-        return elemento
-    else:
-        contador += 1
-        pila.apilar(contador_recursivo(pila))    
-    return elemento  
+        return 0
+    
+    contador = 1 + _contador_recursivo(pila)
+    pila.apilar(elemento)
+    return contador
+
+
+def contador_recursivo(pila):
+    return _contador_recursivo(pila)

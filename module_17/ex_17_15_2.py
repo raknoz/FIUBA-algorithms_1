@@ -8,11 +8,14 @@ Consigna:
 '''
 import random
 
-DICT_DELAY = {1:3, 2:5, 3:7}
-
-def escape(jaula):
+def _escape(jaula):
     ''' Función que calcula el tiempo de salir de una rata.'''
     if jaula == 3:
         return 7
-    else:
-        return DICT_DELAY.get(jaula) + escape(random.randint(1,3))
+    
+    tiempo = 3 if jaula == 1 else 5
+    return tiempo + _escape(random.randint(1,3))
+
+
+def escape():
+    return _escape(random.randint(1,3))
