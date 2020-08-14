@@ -1,0 +1,8 @@
+Consigna:
+    2. Se quiere seleccionar un algoritmo de ordenamiento que va a ser usado para ordenar varias listas de elementos. 
+    Teniendo en cuenta que se sospecha que cada lista está muy próxima a estar ordenada en sentido inverso, se proponen dos alternativas: 
+    (1) usar mergesort, (2) invertir el arreglo in-place y usar inserción. Justificar cuáles son las ventajas y desventajas de cada caso.
+
+- Dependiendo de la cantidad de elementos de la lista pueden ser conveniente usar "inserción" O(n2).
+
+- Por otro lado si la lista contiene muchos elementos es recomendable usar el mergesort  O(n log n) 
