@@ -11,6 +11,9 @@ class ListaEnlazada:
 
     def __iter__(self):
         return IteradorListaEnlazada(self)
+
+    def __len__(self):
+        return self.len
     
     def pop(self, i=None):
         ''' Elimina el nodo de la posición i, y devuelve el dato contenido. Si i está fuera de rango, se levanta la excepción IndexError.
@@ -33,9 +36,9 @@ class ListaEnlazada:
             for pos in range(1, i):
                 n_ant = n_act
                 n_act = n_ant.prox
-                # Guardar el dato y descartar el nodo
-                dato = n_act.dato
-                n_ant.prox = n_act.prox      
+            # Guardar el dato y descartar el nodo
+            dato = n_act.dato
+            n_ant.prox = n_act.prox      
         self.len -= 1
         return dato
 
@@ -77,15 +80,15 @@ class ListaEnlazada:
             n_ant = self.prim
             for pos in range(1, i):
                 n_ant = n_ant.prox
-                # Intercalar el nuevo nodo
-                nuevo.prox = n_ant.prox
-                n_ant.prox = nuevo
+            # Intercalar el nuevo nodo
+            nuevo.prox = n_ant.prox
+            n_ant.prox = nuevo
         self.len += 1
 
-    class _Nodo:
-        def __init__(self, dato=None, prox=None):
-            self.dato = dato
-            self.prox = prox
+class _Nodo:
+    def __init__(self, dato=None, prox=None):
+        self.dato = dato
+        self.prox = prox
         
-        def __str__(self):
-            return str(self.dato)
+    def __str__(self):
+        return str(self.dato)
