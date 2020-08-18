@@ -5,6 +5,7 @@ class Cola:
         '''Crea una cola vacía.'''
         self.primero = None
         self.ultimo = None
+        self.elementos = 0
     
     def __iter__(self):
         return IteradorListaEnlazada(self)
@@ -25,6 +26,7 @@ class Cola:
         else:
             self.primero = nuevo
             self.ultimo = nuevo
+        self.elementos += 1
 
     def desencolar(self):
         '''Desencola el primer elemento y devuelve su valor. Si la cola está vacía, levanta ValueError.'''
@@ -34,11 +36,17 @@ class Cola:
         self.primero = self.primero.prox
         if not self.primero:
             self.ultimo = None
+        self.elementos -= 1
         return valor
 
     def esta_vacia(self):
         '''Devuelve True si la cola esta vacía, False si no.'''
         return self.primero is None
+
+    #  Se agrega la funcion para evitar tener que recorrerla para saber cuantos elementos tiene. 
+    def __len__(self):
+        ''' Retorna la longitud de la cola. '''
+        return self.elementos
 
 
 class Nodo:

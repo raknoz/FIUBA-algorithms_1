@@ -80,17 +80,15 @@ debería quedar la cola:
 sale <| 1 5 8 |< entra
 '''
 
-def depurar_fases(fases):
+def depurar_fases(c_fases):
     ant = None
-    aux = Cola()
-    while not fases.esta_vacia():
-        fase = fases.desencolar()
+    n_fases = len(c_fases)
+    posicion = 0
+    while posicion < n_fases:
+        fase = c_fases.desencolar()
         #Separación del primer caso
-        if ant ==  None:
-            aux.encolar(fase)
+        if ant == None or fase > ant:
+            c_fases.encolar(fase)
             ant = fase
-        elif fase > ant:
-                aux.encolar(fase)
-                ant = fase        
-        
-    return aux
+        posicion += 1
+    return c_fases
