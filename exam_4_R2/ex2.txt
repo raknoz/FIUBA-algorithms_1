@@ -1,0 +1,1 @@
+Consigna: Hacer un seguimiento del ordenamiento de la lista [6,1,44,5,17,23,29,10] usando el algoritmo de MergeSort.
